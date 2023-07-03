@@ -5,7 +5,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Warehouse_accounting.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -77,6 +77,19 @@ namespace Warehouse_accounting.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "WorkGroup",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Group = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkGroup", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AuthorizationDatas",
                 columns: table => new
                 {
@@ -127,46 +140,6 @@ namespace Warehouse_accounting.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WarehouseLoading",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    LoadingPercent = table.Column<int>(type: "integer", nullable: false),
-                    WarehouseId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WarehouseLoading", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_WarehouseLoading_Warehouses_WarehouseId",
-                        column: x => x.WarehouseId,
-                        principalTable: "Warehouses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WorkGroup",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Group = table.Column<string>(type: "text", nullable: false),
-                    WarehouseId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WorkGroup", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_WorkGroup_Warehouses_WarehouseId",
-                        column: x => x.WarehouseId,
-                        principalTable: "Warehouses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Employees",
                 columns: table => new
                 {
@@ -203,6 +176,68 @@ namespace Warehouse_accounting.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "WarehouseLoading",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    LoadingPercent = table.Column<int>(type: "integer", nullable: false),
+                    WarehouseId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WarehouseLoading", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WarehouseLoading_Warehouses_WarehouseId",
+                        column: x => x.WarehouseId,
+                        principalTable: "Warehouses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AccessLevel",
+                columns: new[] { "Id", "Level" },
+                values: new object[,]
+                {
+                    { 1, "Администратор" },
+                    { 2, "Кладовщик" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "EmployeePosition",
+                columns: new[] { "Id", "Position" },
+                values: new object[,]
+                {
+                    { 1, "Администратор" },
+                    { 2, "Директор" },
+                    { 3, "Кладовщик" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "EmployeeStatus",
+                columns: new[] { "Id", "Status" },
+                values: new object[,]
+                {
+                    { 1, "В сети" },
+                    { 2, "Не в сети" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "WarehouseStatus",
+                columns: new[] { "Id", "Status" },
+                values: new object[,]
+                {
+                    { 1, "Открыт" },
+                    { 2, "Закрыт" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "WorkGroup",
+                columns: new[] { "Id", "Group" },
+                values: new object[] { 1, "Руководство" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AuthorizationDatas_AccessLevelId",
                 table: "AuthorizationDatas",
@@ -237,11 +272,6 @@ namespace Warehouse_accounting.Migrations
                 name: "IX_Warehouses_WarehouseStatusId",
                 table: "Warehouses",
                 column: "WarehouseStatusId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WorkGroup_WarehouseId",
-                table: "WorkGroup",
-                column: "WarehouseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

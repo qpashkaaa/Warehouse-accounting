@@ -11,8 +11,8 @@ using Warehouse_accounting.Data;
 namespace Warehouse_accounting.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230702200559_Initial")]
-    partial class Initial
+    [Migration("20230703124529_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,6 +38,18 @@ namespace Warehouse_accounting.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AccessLevel");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Level = "Администратор"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Level = "Кладовщик"
+                        });
                 });
 
             modelBuilder.Entity("Warehouse_accounting.Model.DbModels.AuthorizationData", b =>
@@ -129,6 +141,23 @@ namespace Warehouse_accounting.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EmployeePosition");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Position = "Администратор"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Position = "Директор"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Position = "Кладовщик"
+                        });
                 });
 
             modelBuilder.Entity("Warehouse_accounting.Model.DbModels.EmployeeStatus", b =>
@@ -146,6 +175,18 @@ namespace Warehouse_accounting.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EmployeeStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Status = "В сети"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Status = "Не в сети"
+                        });
                 });
 
             modelBuilder.Entity("Warehouse_accounting.Model.DbModels.Warehouse", b =>
@@ -240,6 +281,18 @@ namespace Warehouse_accounting.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("WarehouseStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Status = "Открыт"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Status = "Закрыт"
+                        });
                 });
 
             modelBuilder.Entity("Warehouse_accounting.Model.DbModels.WorkGroup", b =>
@@ -254,14 +307,16 @@ namespace Warehouse_accounting.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("WarehouseId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("WarehouseId");
-
                     b.ToTable("WorkGroup");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Group = "Руководство"
+                        });
                 });
 
             modelBuilder.Entity("Warehouse_accounting.Model.DbModels.AuthorizationData", b =>
@@ -332,17 +387,6 @@ namespace Warehouse_accounting.Migrations
                     b.Navigation("Warehouse");
                 });
 
-            modelBuilder.Entity("Warehouse_accounting.Model.DbModels.WorkGroup", b =>
-                {
-                    b.HasOne("Warehouse_accounting.Model.DbModels.Warehouse", "Warehouse")
-                        .WithMany("WorkGroups")
-                        .HasForeignKey("WarehouseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Warehouse");
-                });
-
             modelBuilder.Entity("Warehouse_accounting.Model.DbModels.AccessLevel", b =>
                 {
                     b.Navigation("AuthorizationDatas");
@@ -361,8 +405,6 @@ namespace Warehouse_accounting.Migrations
             modelBuilder.Entity("Warehouse_accounting.Model.DbModels.Warehouse", b =>
                 {
                     b.Navigation("WarehouseLoadings");
-
-                    b.Navigation("WorkGroups");
                 });
 
             modelBuilder.Entity("Warehouse_accounting.Model.DbModels.WarehouseAddress", b =>

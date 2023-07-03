@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Diagnostics;
@@ -9,19 +10,6 @@ namespace Warehouse_accounting.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext() => Database.EnsureCreated();
-
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            IConfiguration configuration;
-            configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
-                .AddJsonFile("appsettings.json")
-                .Build();
-            // connect to postgres with connection string from app settings
-            options.UseNpgsql(configuration.GetSection("WPFDatabase").Value);
-        }
-
         #region AUTH_TABLES
         public DbSet<AuthorizationData> AuthorizationDatas { get; set; }
         #endregion
@@ -33,5 +21,60 @@ namespace Warehouse_accounting.Data
         #region EMPLOYEE_TABLES
         public DbSet<Employee> Employees { get; set; }
         #endregion
+
+        public AppDbContext() {
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            IConfiguration configuration;
+            configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
+                .AddJsonFile("appsettings.json")
+                .Build();
+            // connect to postgres with connection string from app settings
+            options.UseNpgsql(configuration.GetSection("WPFDatabase").Value);
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            #region AccessLevelDefaultData
+            modelBuilder.Entity<AccessLevel>().HasData(
+                     new AccessLevel { Id = 1, Level = "Администратор" },
+                     new AccessLevel { Id = 2, Level = "Кладовщик" }
+            );
+            #endregion
+
+            #region WarehouseStatusesDefaultData
+            modelBuilder.Entity<WarehouseStatus>().HasData(
+                     new WarehouseStatus { Id = 1, Status = "Открыт" },
+                     new WarehouseStatus { Id = 2, Status = "Закрыт" }
+            );
+            #endregion
+
+            base.OnModelCreating(modelBuilder);
+            #region EmployeePositionsDefaultData
+            modelBuilder.Entity<EmployeePosition>().HasData(
+                     new EmployeePosition { Id = 1, Position = "Администратор" },
+                     new EmployeePosition { Id = 2, Position = "Директор" },
+                     new EmployeePosition { Id = 3, Position = "Кладовщик" }
+            );
+            #endregion
+
+            #region EmployeeStatusesDefaultData
+            modelBuilder.Entity<EmployeeStatus>().HasData(
+                     new EmployeeStatus { Id = 1, Status = "В сети" },
+                     new EmployeeStatus { Id = 2, Status = "Не в сети" }
+            );
+            #endregion
+
+            #region WorkGroupsDefaultData
+            modelBuilder.Entity<WorkGroup>().HasData(
+                     new WorkGroup { Id = 1, Group = "Руководство" }
+            );
+            #endregion
+        }
     }
 }

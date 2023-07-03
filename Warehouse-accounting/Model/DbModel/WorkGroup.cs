@@ -10,7 +10,6 @@ namespace Warehouse_accounting.Model.DbModels
     {
         public int Id { get; set; }
         public string Group { get; set; }
-        public Warehouse Warehouse { get; set; }
         public List<Employee> Employees { get; set; }
     }
 }
