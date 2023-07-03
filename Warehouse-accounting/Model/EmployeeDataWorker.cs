@@ -8,9 +8,9 @@ using Warehouse_accounting.Model.DbModels;
 using System.Linq;
 using System.Timers;
 
-namespace Warehouse_accounting.ViewModel
+namespace Warehouse_accounting.Model
 {
-    public static class EmployeeDataManage
+    public static class EmployeeDataWorker
     {
         #region GET_METHOODS
         public static List<Employee> GetEmployees()
