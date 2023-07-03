@@ -4,9 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Warehouse_accounting"
+        xmlns:myControls ="clr-namespace:Warehouse_accounting.View.MyUserControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1000" Width="1440" 
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <myControls:CustomToolBar Grid.Row="0"/>
+        <myControls:AuthorizationModalWindow Grid.Row="1"/>
     </Grid>
 </Window>

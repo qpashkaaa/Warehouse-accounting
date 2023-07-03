@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Warehouse_accounting.View.MyUserControls.AuthorizationModalWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Warehouse_accounting.View.MyUserControls"
+             mc:Ignorable="d">
+    <Grid>
+        <local:ModalWindowBackground></local:ModalWindowBackground>
+        <Border x:Name="WindowBorder" BorderThickness="0"
+        CornerRadius="12,12,12,12" BorderBrush="Black" Background="#FFFFFF" Width="526" Height="460">
+        </Border>
+        <StackPanel Width="526" Height="460">
+            <Image Source="/Images/AuthorizationIcon.png" Width="48" HorizontalAlignment="Left" Margin="40 40 0 0"></Image>
+            <TextBlock Text="Авторизация" FontSize="21" Margin="40 31 0 0" FontWeight="Bold"></TextBlock>
+            <local:CustomTextBox Placeholder="Логин"></local:CustomTextBox>
+            <local:CustomTextBox Placeholder="Пароль"></local:CustomTextBox>
+            <local:CustomButtonExecute Placeholder="Войти"></local:CustomButtonExecute>
+        </StackPanel>
+    </Grid>
+</UserControl>

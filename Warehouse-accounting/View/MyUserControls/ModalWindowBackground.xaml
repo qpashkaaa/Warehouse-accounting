@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="Warehouse_accounting.View.MyUserControls.ModalWindowBackground"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Warehouse_accounting.View.MyUserControls"
+             mc:Ignorable="d">
+    <Grid>
+        <Border x:Name="WindowBorder" BorderThickness="0" Grid.Row="0" Grid.ColumnSpan="2"
+        CornerRadius="0,0,12,12" BorderBrush="Black" Background="#5D76A0" Opacity="0.5" Width="1440" Height="1070">
+        </Border>
+    </Grid>
+</UserControl>
