@@ -7,9 +7,9 @@ using System.Xml.Linq;
 using Warehouse_accounting.Data;
 using Warehouse_accounting.Model.DbModels;
 
-namespace Warehouse_accounting.ViewModel
+namespace Warehouse_accounting.Model
 {
-    public static class WarehouseDataManage
+    public static class WarehouseDataWorker
     {
         #region GET_METHOODS
         public static List<Warehouse> GetWarehouses()
