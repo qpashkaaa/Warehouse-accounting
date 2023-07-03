@@ -35,7 +35,7 @@ namespace Warehouse_accounting.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AccessLevel");
+                    b.ToTable("AccessLevels");
 
                     b.HasData(
                         new
@@ -106,7 +106,7 @@ namespace Warehouse_accounting.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Unique_number")
+                    b.Property<string>("UniqueNumber")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -138,7 +138,7 @@ namespace Warehouse_accounting.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmployeePosition");
+                    b.ToTable("EmployeePositions");
 
                     b.HasData(
                         new
@@ -172,7 +172,7 @@ namespace Warehouse_accounting.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmployeeStatus");
+                    b.ToTable("EmployeeStatuses");
 
                     b.HasData(
                         new
@@ -240,7 +240,7 @@ namespace Warehouse_accounting.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WarehouseAddress");
+                    b.ToTable("WarehouseAddresses");
                 });
 
             modelBuilder.Entity("Warehouse_accounting.Model.DbModels.WarehouseLoading", b =>
@@ -261,7 +261,7 @@ namespace Warehouse_accounting.Migrations
 
                     b.HasIndex("WarehouseId");
 
-                    b.ToTable("WarehouseLoading");
+                    b.ToTable("WarehouseLoadings");
                 });
 
             modelBuilder.Entity("Warehouse_accounting.Model.DbModels.WarehouseStatus", b =>
@@ -278,7 +278,7 @@ namespace Warehouse_accounting.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WarehouseStatus");
+                    b.ToTable("WarehouseStatuses");
 
                     b.HasData(
                         new
@@ -307,7 +307,7 @@ namespace Warehouse_accounting.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorkGroup");
+                    b.ToTable("WorkGroups");
 
                     b.HasData(
                         new

@@ -12,14 +12,22 @@ namespace Warehouse_accounting.Data
     {
         #region AUTH_TABLES
         public DbSet<AuthorizationData> AuthorizationDatas { get; set; }
+        public DbSet<AccessLevel> AccessLevels { get; set; }
         #endregion
 
         #region WAREHOUSES_TABLES
         public DbSet<Warehouse> Warehouses { get; set; }
+        public DbSet<WarehouseAddress> WarehouseAddresses { get; set; }
+        public DbSet<WarehouseLoading> WarehouseLoadings { get; set; }
+        public DbSet<WarehouseStatus> WarehouseStatuses { get; set; }
+
         #endregion
 
         #region EMPLOYEE_TABLES
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<EmployeePosition> EmployeePositions { get; set; }
+        public DbSet<EmployeeStatus> EmployeeStatuses { get; set; }
+        public DbSet<WorkGroup> WorkGroups { get; set; }
         #endregion
 
         public AppDbContext() {

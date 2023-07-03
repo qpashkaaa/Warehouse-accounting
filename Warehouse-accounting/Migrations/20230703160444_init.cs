@@ -5,12 +5,12 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Warehouse_accounting.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AccessLevel",
+                name: "AccessLevels",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -19,11 +19,11 @@ namespace Warehouse_accounting.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AccessLevel", x => x.Id);
+                    table.PrimaryKey("PK_AccessLevels", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeePosition",
+                name: "EmployeePositions",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -32,11 +32,11 @@ namespace Warehouse_accounting.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeePosition", x => x.Id);
+                    table.PrimaryKey("PK_EmployeePositions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeeStatus",
+                name: "EmployeeStatuses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -45,11 +45,11 @@ namespace Warehouse_accounting.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeStatus", x => x.Id);
+                    table.PrimaryKey("PK_EmployeeStatuses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "WarehouseAddress",
+                name: "WarehouseAddresses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -60,11 +60,11 @@ namespace Warehouse_accounting.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WarehouseAddress", x => x.Id);
+                    table.PrimaryKey("PK_WarehouseAddresses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "WarehouseStatus",
+                name: "WarehouseStatuses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -73,11 +73,11 @@ namespace Warehouse_accounting.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WarehouseStatus", x => x.Id);
+                    table.PrimaryKey("PK_WarehouseStatuses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "WorkGroup",
+                name: "WorkGroups",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -86,7 +86,7 @@ namespace Warehouse_accounting.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WorkGroup", x => x.Id);
+                    table.PrimaryKey("PK_WorkGroups", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -104,9 +104,9 @@ namespace Warehouse_accounting.Migrations
                 {
                     table.PrimaryKey("PK_AuthorizationDatas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AuthorizationDatas_AccessLevel_AccessLevelId",
+                        name: "FK_AuthorizationDatas_AccessLevels_AccessLevelId",
                         column: x => x.AccessLevelId,
-                        principalTable: "AccessLevel",
+                        principalTable: "AccessLevels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -126,15 +126,15 @@ namespace Warehouse_accounting.Migrations
                 {
                     table.PrimaryKey("PK_Warehouses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Warehouses_WarehouseAddress_WarehouseAddressId",
+                        name: "FK_Warehouses_WarehouseAddresses_WarehouseAddressId",
                         column: x => x.WarehouseAddressId,
-                        principalTable: "WarehouseAddress",
+                        principalTable: "WarehouseAddresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Warehouses_WarehouseStatus_WarehouseStatusId",
+                        name: "FK_Warehouses_WarehouseStatuses_WarehouseStatusId",
                         column: x => x.WarehouseStatusId,
-                        principalTable: "WarehouseStatus",
+                        principalTable: "WarehouseStatuses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -148,7 +148,7 @@ namespace Warehouse_accounting.Migrations
                     Surname = table.Column<string>(type: "text", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Patronymic = table.Column<string>(type: "text", nullable: false),
-                    Unique_number = table.Column<string>(type: "text", nullable: false),
+                    UniqueNumber = table.Column<string>(type: "text", nullable: false),
                     EmployeePositionId = table.Column<int>(type: "integer", nullable: false),
                     WorkGroupId = table.Column<int>(type: "integer", nullable: false),
                     EmployeeStatusId = table.Column<int>(type: "integer", nullable: false)
@@ -157,27 +157,27 @@ namespace Warehouse_accounting.Migrations
                 {
                     table.PrimaryKey("PK_Employees", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Employees_EmployeePosition_EmployeePositionId",
+                        name: "FK_Employees_EmployeePositions_EmployeePositionId",
                         column: x => x.EmployeePositionId,
-                        principalTable: "EmployeePosition",
+                        principalTable: "EmployeePositions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Employees_EmployeeStatus_EmployeeStatusId",
+                        name: "FK_Employees_EmployeeStatuses_EmployeeStatusId",
                         column: x => x.EmployeeStatusId,
-                        principalTable: "EmployeeStatus",
+                        principalTable: "EmployeeStatuses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Employees_WorkGroup_WorkGroupId",
+                        name: "FK_Employees_WorkGroups_WorkGroupId",
                         column: x => x.WorkGroupId,
-                        principalTable: "WorkGroup",
+                        principalTable: "WorkGroups",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "WarehouseLoading",
+                name: "WarehouseLoadings",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -187,9 +187,9 @@ namespace Warehouse_accounting.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WarehouseLoading", x => x.Id);
+                    table.PrimaryKey("PK_WarehouseLoadings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_WarehouseLoading_Warehouses_WarehouseId",
+                        name: "FK_WarehouseLoadings_Warehouses_WarehouseId",
                         column: x => x.WarehouseId,
                         principalTable: "Warehouses",
                         principalColumn: "Id",
@@ -197,7 +197,7 @@ namespace Warehouse_accounting.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "AccessLevel",
+                table: "AccessLevels",
                 columns: new[] { "Id", "Level" },
                 values: new object[,]
                 {
@@ -206,7 +206,7 @@ namespace Warehouse_accounting.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "EmployeePosition",
+                table: "EmployeePositions",
                 columns: new[] { "Id", "Position" },
                 values: new object[,]
                 {
@@ -216,7 +216,7 @@ namespace Warehouse_accounting.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "EmployeeStatus",
+                table: "EmployeeStatuses",
                 columns: new[] { "Id", "Status" },
                 values: new object[,]
                 {
@@ -225,7 +225,7 @@ namespace Warehouse_accounting.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "WarehouseStatus",
+                table: "WarehouseStatuses",
                 columns: new[] { "Id", "Status" },
                 values: new object[,]
                 {
@@ -234,7 +234,7 @@ namespace Warehouse_accounting.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "WorkGroup",
+                table: "WorkGroups",
                 columns: new[] { "Id", "Group" },
                 values: new object[] { 1, "Руководство" });
 
@@ -259,8 +259,8 @@ namespace Warehouse_accounting.Migrations
                 column: "WorkGroupId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WarehouseLoading_WarehouseId",
-                table: "WarehouseLoading",
+                name: "IX_WarehouseLoadings_WarehouseId",
+                table: "WarehouseLoadings",
                 column: "WarehouseId");
 
             migrationBuilder.CreateIndex(
@@ -283,28 +283,28 @@ namespace Warehouse_accounting.Migrations
                 name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "WarehouseLoading");
+                name: "WarehouseLoadings");
 
             migrationBuilder.DropTable(
-                name: "AccessLevel");
+                name: "AccessLevels");
 
             migrationBuilder.DropTable(
-                name: "EmployeePosition");
+                name: "EmployeePositions");
 
             migrationBuilder.DropTable(
-                name: "EmployeeStatus");
+                name: "EmployeeStatuses");
 
             migrationBuilder.DropTable(
-                name: "WorkGroup");
+                name: "WorkGroups");
 
             migrationBuilder.DropTable(
                 name: "Warehouses");
 
             migrationBuilder.DropTable(
-                name: "WarehouseAddress");
+                name: "WarehouseAddresses");
 
             migrationBuilder.DropTable(
-                name: "WarehouseStatus");
+                name: "WarehouseStatuses");
         }
     }
 }

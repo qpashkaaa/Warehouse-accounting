@@ -12,7 +12,7 @@ namespace Warehouse_accounting.Model.DbModels
         public string Surname { get; set; }
         public string Name { get; set; }
         public string Patronymic { get; set; }
-        public string Unique_number { get; set; }
+        public string UniqueNumber { get; set; }
         public EmployeePosition EmployeePosition { get; set; }
         public WorkGroup WorkGroup { get; set; }
         public EmployeeStatus EmployeeStatus { get; set; }
