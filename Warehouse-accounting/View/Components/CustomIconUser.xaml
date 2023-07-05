@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="Warehouse_accounting.View.Components.CustomIconUser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
+             mc:Ignorable="d" >
+    <Border x:Name="btnStyle" BorderThickness="0"
+            CornerRadius="50" BorderBrush="#D0D5DD" Background="#FFF2EA" Width="40" Height="40" Cursor="Hand">
+        <Grid>
+            <TextBlock x:Name="icnPlaceholder" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Panel.ZIndex="-1" Foreground="#93312B"/>
+        </Grid>
+    </Border>
+</UserControl>

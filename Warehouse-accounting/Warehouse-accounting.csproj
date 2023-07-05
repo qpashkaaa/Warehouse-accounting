@@ -10,6 +10,10 @@
 
   <ItemGroup>
     <None Remove="Images\AuthorizationIcon.png" />
+    <None Remove="Images\AvatarAddButton.png" />
+    <None Remove="Images\LeftArrow.png" />
+    <None Remove="Images\RightArrow.png" />
+    <None Remove="Images\Search.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,9 +39,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\AuthorizationIcon.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Images\AuthorizationIcon.png" />
+    <Resource Include="Images\AvatarAddButton.png" />
+    <Resource Include="Images\LeftArrow.png" />
+    <Resource Include="Images\RightArrow.png" />
+    <Resource Include="Images\Search.png" />
   </ItemGroup>
 
   <ItemGroup>
