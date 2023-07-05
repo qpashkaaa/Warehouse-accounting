@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Warehouse_accounting"
-        xmlns:myControls ="clr-namespace:Warehouse_accounting.View.MyUserControls"
+        xmlns:myControls ="clr-namespace:Warehouse_accounting.View.Components"
         mc:Ignorable="d"
         Title="MainWindow" Height="1000" Width="1440" 
         ResizeMode="NoResize"

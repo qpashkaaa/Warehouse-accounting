@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Warehouse_accounting.View.MyUserControls
+namespace Warehouse_accounting.View.Components
 {
     /// <summary>
     /// Логика взаимодействия для CustomToolBar.xaml

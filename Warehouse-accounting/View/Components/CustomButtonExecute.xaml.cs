@@ -13,35 +13,38 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Warehouse_accounting.View.MyUserControls
+namespace Warehouse_accounting.View.Components
 {
     /// <summary>
-    /// Логика взаимодействия для CustomTextBox.xaml
+    /// Логика взаимодействия для CustomButtonExecute.xaml
     /// </summary>
-    public partial class CustomTextBox : UserControl
+    public partial class CustomButtonExecute : UserControl
     {
-        public CustomTextBox()
+        public CustomButtonExecute()
         {
             InitializeComponent();
         }
         private string placeholder;
-
         public string Placeholder
         {
             get { return placeholder; }
             set
             {
                 placeholder = value;
-                tbPlaceholder.Text = placeholder;
+                btnPlaceholder.Text = placeholder;
             }
         }
 
-        private void txtInput_TextChanged(object sender, TextChangedEventArgs e)
+        private System.Windows.Media.Brush color;
+
+        public System.Windows.Media.Brush Color
         {
-            if (string.IsNullOrEmpty(txtInput.Text))
-                tbPlaceholder.Visibility = Visibility.Visible;
-            else
-                tbPlaceholder.Visibility = Visibility.Hidden;
+            get { return color; }
+            set
+            {
+                color = value;
+                btnStyle.Background = color;
+            }
         }
     }
 }

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Warehouse_accounting.View.MyUserControls
+namespace Warehouse_accounting.View.Components
 {
     /// <summary>
-    /// Логика взаимодействия для AuthorizationModalWindow.xaml
+    /// Логика взаимодействия для ModalWindowBackground.xaml
     /// </summary>
-    public partial class AuthorizationModalWindow : UserControl
+    public partial class ModalWindowBackground : UserControl
     {
-        public AuthorizationModalWindow()
+        public ModalWindowBackground()
         {
             InitializeComponent();
         }
