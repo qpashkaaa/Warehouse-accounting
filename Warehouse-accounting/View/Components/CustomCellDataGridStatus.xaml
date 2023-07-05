@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Warehouse_accounting.View.Components.CustomCellDataGridStatus"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
+             mc:Ignorable="d" >
+    <Border x:Name="elemStyle" BorderThickness="0"
+            CornerRadius="10" BorderBrush="#ECFDF3" Background="#ECFDF3" Width="74" Height="22">
+        <Grid>
+            <Border x:Name="circle" BorderThickness="0"
+            CornerRadius="50" BorderBrush="#12B76A" Background="#12B76A" Width="8" Height="8" HorizontalAlignment="Left" Margin="6 0 0 0">
+            </Border>
+            <TextBlock x:Name="cellPlaceholder" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" Panel.ZIndex="-1" Foreground="#027A48" Margin="7 0 0 0"/>
+        </Grid>
+    </Border>
+</UserControl>
