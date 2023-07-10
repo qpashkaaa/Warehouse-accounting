@@ -14,7 +14,7 @@
             <Image Source="/Images/AuthorizationIcon.png" Width="48" HorizontalAlignment="Left" Margin="40 40 0 0"></Image>
             <TextBlock Text="Авторизация" FontSize="21" Margin="40 31 0 0" FontWeight="Bold"></TextBlock>
             <local:CustomTextBox Placeholder="Логин"></local:CustomTextBox>
-            <local:CustomTextBox Placeholder="Пароль"></local:CustomTextBox>
+            <local:CustomPasswordBox Placeholder="Пароль"></local:CustomPasswordBox>
             <local:CustomButtonExecute Placeholder="Войти"></local:CustomButtonExecute>
         </StackPanel>
     </Grid>
