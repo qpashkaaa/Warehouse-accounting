@@ -11,9 +11,17 @@
   <ItemGroup>
     <None Remove="Images\AuthorizationIcon.png" />
     <None Remove="Images\AvatarAddButton.png" />
+    <None Remove="Images\EmployeesBtnIcon.png" />
+    <None Remove="Images\EmployeesBtnIcon_Selected.png" />
     <None Remove="Images\LeftArrow.png" />
+    <None Remove="Images\LogoIcon.png" />
+    <None Remove="Images\LogoIconName.png" />
+    <None Remove="Images\Logout.png" />
     <None Remove="Images\RightArrow.png" />
+    <None Remove="Images\RightArrowBtnIcon_Selected.png" />
     <None Remove="Images\Search.png" />
+    <None Remove="Images\WarehousesBtnIcon.png" />
+    <None Remove="Images\WarehousesBtnIcon_Selected.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,11 +47,45 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\AuthorizationIcon.png" />
-    <Resource Include="Images\AvatarAddButton.png" />
-    <Resource Include="Images\LeftArrow.png" />
-    <Resource Include="Images\RightArrow.png" />
-    <Resource Include="Images\Search.png" />
+    <Resource Include="Images\LogoIcon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\LogoIconName.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Logout.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RightArrowBtnIcon_Selected.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\AuthorizationIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\AvatarAddButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\EmployeesBtnIcon_Selected.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\EmployeesBtnIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\LeftArrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RightArrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Search.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\WarehousesBtnIcon_Selected.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\WarehousesBtnIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

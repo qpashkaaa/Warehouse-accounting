@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Warehouse_accounting.View.Components.CustomDataGridTabControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
+             mc:Ignorable="d" Height="38" d:DesignWidth="1107">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <local:CustomTabControlElement Grid.Column="0" x:Name="t_1"></local:CustomTabControlElement>
+        <local:CustomTabControlElement Grid.Column="1" x:Name="t_2"></local:CustomTabControlElement>
+        <local:CustomTabControlElement Grid.Column="2" x:Name="t_3"></local:CustomTabControlElement>
+        <local:CustomTabControlElement Grid.Column="3" x:Name="t_4"></local:CustomTabControlElement>
+        <local:CustomTabControlElement Grid.Column="4" x:Name="t_5"></local:CustomTabControlElement>
+        <local:CustomTabControlElement Grid.Column="5" x:Name="t_6"></local:CustomTabControlElement>
+        <local:CustomTabControlElement Grid.Column="6" x:Name="t_7"></local:CustomTabControlElement>
+        <local:CustomTabControlElement Grid.Column="7" x:Name="t_8"></local:CustomTabControlElement>
+        <local:CustomTabControlElement Grid.Column="8" x:Name="t_9"></local:CustomTabControlElement>
+    </Grid>
+</UserControl>

@@ -10,7 +10,8 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         Background="Transparent"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="/Images/LogoIcon.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="32"></RowDefinition>
