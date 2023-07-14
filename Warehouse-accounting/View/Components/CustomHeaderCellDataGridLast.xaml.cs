@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Warehouse_accounting.View.Components
 {
     /// <summary>
-    /// Логика взаимодействия для CustomButtonDataGridPage.xaml
+    /// Логика взаимодействия для CustomHeaderCellDataGridLast.xaml
     /// </summary>
-    public partial class CustomButtonDataGridPage : UserControl
+    public partial class CustomHeaderCellDataGridLast : UserControl
     {
-        public CustomButtonDataGridPage()
+        public CustomHeaderCellDataGridLast()
         {
             InitializeComponent();
         }
@@ -32,23 +32,18 @@ namespace Warehouse_accounting.View.Components
             set
             {
                 placeholder = value;
-                btnPlaceholder.Text = placeholder;
+                cellPlaceholder.Text = placeholder;
             }
         }
 
-        private bool active;
-        public bool Active
+        private double width;
+        public double Width
         {
-            get { return active; }
+            get { return width; }
             set
             {
-                active = value;
-                if (active == true)
-                {
-                    btnStyle.BorderBrush = (Brush)new BrushConverter().ConvertFrom("#D0D5DD");
-                    btnStyle.Background = (Brush)new BrushConverter().ConvertFrom("#EFF1F4");
-                    btnPlaceholder.Foreground = (Brush)new BrushConverter().ConvertFrom("#091E42");
-                }
+                width = value;
+                brdSettings.Width = width;
             }
         }
     }

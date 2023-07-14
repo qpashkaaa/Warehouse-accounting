@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Warehouse_accounting.View
+namespace Warehouse_accounting.View.Components
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для CustomWarehousesDataGrid.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CustomWarehousesDataGrid : UserControl
     {
-        public MainWindow()
+        public CustomWarehousesDataGrid()
         {
             InitializeComponent();
         }

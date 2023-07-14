@@ -16,24 +16,13 @@ using System.Windows.Shapes;
 namespace Warehouse_accounting.View.Components
 {
     /// <summary>
-    /// Логика взаимодействия для CustomButtonDataGridPageUnactive.xaml
+    /// Логика взаимодействия для MainWindowBackgroud.xaml
     /// </summary>
-    public partial class CustomButtonDataGridPageUnactive : UserControl
+    public partial class MainWindowBackgroud : UserControl
     {
-        public CustomButtonDataGridPageUnactive()
+        public MainWindowBackgroud()
         {
             InitializeComponent();
-        }
-
-        private string placeholder;
-        public string Placeholder
-        {
-            get { return placeholder; }
-            set
-            {
-                placeholder = value;
-                btnPlaceholder.Text = placeholder;
-            }
         }
     }
 }

@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="Warehouse_accounting.View.Components.Header"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
+             mc:Ignorable="d">
+    <Border BorderThickness="1"
+             BorderBrush="#EFF1F4" Background="#FFFFFF" Width="1209" Height="89">
+        <Grid>
+            <local:CustomIconUser Placeholder="AA" HorizontalAlignment="Right" Margin="0 0 51 0"></local:CustomIconUser>
+        </Grid>
+    </Border>
+</UserControl>
