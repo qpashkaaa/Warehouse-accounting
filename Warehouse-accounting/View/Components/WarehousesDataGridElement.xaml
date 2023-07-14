@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Warehouse_accounting.View.Components.WarehousesDataGridElement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
+             mc:Ignorable="d" >
+    <Border x:Name="elemStyle" BorderBrush="#FFFFFF" Background="#FFFFFF" Width="1106" Height="840" Margin="51 41 51 0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="44"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="62"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <local:CustomDataGridInfoBox Grid.Row="0" Grid.Column="0" Placeholder="Склады" CountElements="3"></local:CustomDataGridInfoBox>
+            <local:CustomButtonAdd Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Placeholder="Добавить склад"></local:CustomButtonAdd>
+            <local:CustomDataGridTabControl Grid.Row="1" Grid.ColumnSpan="2" T_1="Все склады" ActiveTab="1"></local:CustomDataGridTabControl>
+            <local:CustomTextBoxDataGridSearch Grid.Row="2" Grid.ColumnSpan="2" Placeholder="Поиск склада по адресу"></local:CustomTextBoxDataGridSearch>
+            <local:CustomWarehousesDataGrid Grid.Row="3" Grid.ColumnSpan="2" Margin="0 11 0 0"></local:CustomWarehousesDataGrid>
+        </Grid>
+    </Border>
+</UserControl>

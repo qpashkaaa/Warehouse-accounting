@@ -22,7 +22,6 @@
             <RowDefinition Height="72"></RowDefinition>
             <RowDefinition Height="72"></RowDefinition>
             <RowDefinition Height="72"></RowDefinition>
-            <RowDefinition Height="72"></RowDefinition>
             <RowDefinition Height="93"></RowDefinition>
         </Grid.RowDefinitions>
         <local:CustomHeaderCellDataGridMainInfo Grid.Row="0" Grid.Column="0" Placeholder="Наименование"></local:CustomHeaderCellDataGridMainInfo>
@@ -30,6 +29,6 @@
         <local:CustomHeaderCellDataGridTextInfo Grid.Row="0" Grid.Column="2" Placeholder="Адрес"></local:CustomHeaderCellDataGridTextInfo>
         <local:CustomHeaderCellDataGridTextInfo Grid.Row="0" Grid.Column="3" Placeholder="Статус"></local:CustomHeaderCellDataGridTextInfo>
         <local:CustomHeaderCellDataGridLast Grid.Row="0" Grid.Column="4"></local:CustomHeaderCellDataGridLast>
-        <local:CustomDataGridFooter Grid.Row="9" Grid.ColumnSpan="5"></local:CustomDataGridFooter>
+        <local:CustomDataGridFooter Grid.Row="8" Grid.ColumnSpan="5"></local:CustomDataGridFooter>
     </Grid>
 </UserControl>

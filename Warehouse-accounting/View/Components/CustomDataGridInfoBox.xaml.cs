@@ -36,14 +36,14 @@ namespace Warehouse_accounting.View.Components
             }
         }
 
-        private string countElements;
-        public string CountElements
+        private int countElements;
+        public int CountElements
         {
             get { return countElements; }
             set
             {
                 countElements = value;
-                dtGridElementsCount.Text = countElements;
+                dtGridElementsCount.Text = countElements.ToString();
             }
         }
 

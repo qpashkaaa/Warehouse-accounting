@@ -21,5 +21,6 @@
         <myControls:MainWindowBackgroud Grid.Row="1"></myControls:MainWindowBackgroud>
         <myControls:Sidenav Grid.Row="1" HorizontalAlignment="Left"></myControls:Sidenav>
         <myControls:Header Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top"></myControls:Header>
+        <myControls:WarehousesDataGridElement Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom"></myControls:WarehousesDataGridElement>
     </Grid>
 </Window>

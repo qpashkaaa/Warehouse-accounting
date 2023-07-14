@@ -24,8 +24,6 @@ namespace Warehouse_accounting.View.Components
         {
             InitializeComponent();
         }
-
-        // cellPlaceholder.Foreground = (Brush)new BrushConverter().ConvertFrom("#F15046");
         private string placeholder;
         public string Placeholder
         {
