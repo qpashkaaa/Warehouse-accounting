@@ -11,7 +11,7 @@
         WindowStyle="None"
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
-        Icon="/Images/LogoIcon.png">
+        Icon="/Images/LogoIcon.png" x:Name="MainWindowName">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="32"></RowDefinition>

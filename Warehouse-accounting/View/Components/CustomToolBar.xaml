@@ -5,23 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
              mc:Ignorable="d">
-    <Grid>
-        <Border BorderThickness="0" Grid.Row="0" Grid.ColumnSpan="2"
-        CornerRadius="12,12,0,0" BorderBrush="Black" Background="#FFFFFF" Width="1440" Height="32"> 
-        </Border>
-        <Button Width="12" Height="12" Background="#CE5347" BorderBrush="#A74137" HorizontalAlignment="Left" Margin="16 0 0 0" Cursor="Hand">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Button Width="12" Height="12" Background="#58A942" BorderBrush="#389C1D" HorizontalAlignment="Left" Margin="38 0 0 0" Cursor="Hand">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-    </Grid>
+    <Border BorderThickness="0" Grid.Row="0" Grid.ColumnSpan="2"
+        CornerRadius="12,12,0,0" BorderBrush="Black" Background="#FFFFFF" Width="1440" Height="32">
+        <Grid>
+            <Button Width="12" Height="12" Background="#CE5347" BorderBrush="#A74137" HorizontalAlignment="Left" Margin="16 0 0 0" Cursor="Hand" Click="CloseApplication">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="12" Height="12" Background="#58A942" BorderBrush="#389C1D" HorizontalAlignment="Left" Margin="38 0 0 0" Cursor="Hand" Click="CollapseApplication">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+    </Border>
 </UserControl>

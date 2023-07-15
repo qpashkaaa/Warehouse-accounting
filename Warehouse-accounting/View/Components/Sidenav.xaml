@@ -28,7 +28,7 @@
             <local:CustomLogoSidenav Grid.Row="0" HorizontalAlignment="Center"></local:CustomLogoSidenav>
             <local:CustomButtonSidenav Grid.Row="1" Placeholder="Склады" ImageName="WarehousesBtnIcon"></local:CustomButtonSidenav>
             <local:CustomButtonSidenav Grid.Row="2" Placeholder="Сотрудники" ImageName="EmployeesBtnIcon"></local:CustomButtonSidenav>
-            <local:CustomButtonSidenavExit Grid.Row="16" Margin="0 20 0 0"></local:CustomButtonSidenavExit>
+            <local:CustomButtonSidenavExit Grid.Row="16" Margin="0 20 0 0" MouseLeftButtonDown="BackToAuthorizationWindow"></local:CustomButtonSidenavExit>
         </Grid>
     </Border>
 </UserControl>

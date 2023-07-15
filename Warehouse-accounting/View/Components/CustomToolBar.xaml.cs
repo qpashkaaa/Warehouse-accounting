@@ -24,5 +24,15 @@ namespace Warehouse_accounting.View.Components
         {
             InitializeComponent();
         }
+
+        private void CloseApplication(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+
+        private void CollapseApplication(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Windows[0].WindowState = WindowState.Minimized;
+        }
     }
 }
