@@ -3,8 +3,6 @@ using System.Windows.Input;
 using Warehouse_accounting.View.Components;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Warehouse_accounting.Storage.ViewModels;
-
 namespace Warehouse_accounting.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
@@ -18,7 +16,7 @@ namespace Warehouse_accounting.ViewModel
 
         public MainWindowViewModel()
         {
-            MainWindowViewModelStorage.Storage = this;
+
         }
 
         public ICommand bSidenavCustomWarehousesDataGrid_Click

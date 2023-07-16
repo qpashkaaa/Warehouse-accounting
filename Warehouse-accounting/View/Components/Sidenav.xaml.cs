@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
-using Warehouse_accounting.Storage.ViewModels;
 using Warehouse_accounting.ViewModel;
 
 namespace Warehouse_accounting.View.Components
