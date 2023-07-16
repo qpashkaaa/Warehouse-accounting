@@ -16,7 +16,6 @@ namespace Warehouse_accounting.View.Components
         public Sidenav()
         {
             InitializeComponent();
-            DataContext = new SidenavViewModel();
         }
     }
 }

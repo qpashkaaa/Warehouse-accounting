@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Warehouse_accounting.ViewStorage.Components;
+using Warehouse_accounting.Storage.Components;
 
 namespace Warehouse_accounting.View.Components
 {

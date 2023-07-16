@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Warehouse_accounting.View.Components;
 
-namespace Warehouse_accounting.ViewStorage.Components
+namespace Warehouse_accounting.Storage.Components
 {
     public static class CustomButtonSidenavStorage
     {
