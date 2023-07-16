@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
              mc:Ignorable="d" >
-    <Border x:Name="btnStyle" BorderThickness="0 1 0 0" BorderBrush="#E6E7EC" Background="#FFFFFF" Width="208" Height="67" Margin="16 7 0 7"  Cursor="Hand">
+    <Border x:Name="btnStyle" BorderThickness="0 1 0 0" BorderBrush="#E6E7EC" Background="#FFFFFF" Width="208" Height="67" Margin="16 7 0 7"  Cursor="Hand" MouseLeftButtonDown="btnExit_MouseLeftButtonDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="48"></ColumnDefinition>
