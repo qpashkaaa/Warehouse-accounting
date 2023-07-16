@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d">
     <Border BorderThickness="1" BorderBrush="#EFF1F4" Background="#FFFFFF" Width="231" Height="1000">
         <Grid>
@@ -26,9 +27,15 @@
                 <RowDefinition Height="80"></RowDefinition> <!--16-->
             </Grid.RowDefinitions>
             <local:CustomLogoSidenav Grid.Row="0" HorizontalAlignment="Center"></local:CustomLogoSidenav>
-            <local:CustomButtonSidenav Grid.Row="1" Placeholder="Склады" ImageName="WarehousesBtnIcon"></local:CustomButtonSidenav>
+            <local:CustomButtonSidenav Grid.Row="1" Placeholder="Склады" ImageName="WarehousesBtnIcon">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction Command="{Binding Path=bSidenavCustomWarehousesDataGrid_Click, UpdateSourceTrigger=PropertyChanged}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </local:CustomButtonSidenav>
             <local:CustomButtonSidenav Grid.Row="2" Placeholder="Сотрудники" ImageName="EmployeesBtnIcon"></local:CustomButtonSidenav>
-            <local:CustomButtonSidenavExit Grid.Row="16" Margin="0 20 0 0" MouseLeftButtonDown="BackToAuthorizationWindow"></local:CustomButtonSidenavExit>
+            <local:CustomButtonSidenavExit Grid.Row="16" Margin="0 20 0 0"></local:CustomButtonSidenavExit>
         </Grid>
     </Border>
 </UserControl>

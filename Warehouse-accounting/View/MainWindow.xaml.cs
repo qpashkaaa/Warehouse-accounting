@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Warehouse_accounting.Model;
+using Warehouse_accounting.ViewModel;
 
 namespace Warehouse_accounting.View
 {
@@ -23,9 +24,9 @@ namespace Warehouse_accounting.View
         public MainWindow()
         {
             InitializeComponent();
-
             if (System.Windows.Application.Current.Windows.Count != 1)
                 System.Windows.Application.Current.Windows[0].Close();
+            DataContext = new MainWindowViewModel();
         }
     }
 }

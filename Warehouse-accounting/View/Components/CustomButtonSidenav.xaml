@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
              mc:Ignorable="d">
     <Border x:Name="btnStyle" BorderThickness="0"
-            CornerRadius="18" BorderBrush="Black" Background="#FFFFFF" Width="184" Height="36" Margin="16 7 16 7"  Cursor="Hand">
+            CornerRadius="18" BorderBrush="Black" Background="#FFFFFF" Width="184" Height="36" Margin="16 7 16 7"  Cursor="Hand" MouseLeftButtonDown="btnStyle_MouseLeftButtonDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="48"></ColumnDefinition>

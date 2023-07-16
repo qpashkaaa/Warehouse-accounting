@@ -15,11 +15,22 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="89"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <myControls:CustomToolBar Grid.Row="0"/>
-        <myControls:MainWindowBackgroud Grid.Row="1"></myControls:MainWindowBackgroud>
-        <myControls:Sidenav Grid.Row="1" HorizontalAlignment="Left"></myControls:Sidenav>
-        <myControls:Header Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top"></myControls:Header>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="231"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <myControls:CustomToolBar Grid.Row="0" Grid.ColumnSpan="2"/>
+        <myControls:MainWindowBackgroud Grid.Row="1" Grid.ColumnSpan="2"></myControls:MainWindowBackgroud>
+        <myControls:Header Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top"></myControls:Header>
+        <myControls:Sidenav Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Left"></myControls:Sidenav>
+        <Frame 
+            Grid.Row="2" 
+            Grid.Column="2" 
+            Background="#FFFFFF"
+            Content="{Binding CurrentPage}"
+            NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
