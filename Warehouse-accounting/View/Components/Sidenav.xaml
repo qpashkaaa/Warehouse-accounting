@@ -30,7 +30,7 @@
             <local:CustomButtonSidenav Grid.Row="1" Placeholder="Склады" ImageName="WarehousesBtnIcon">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
-                        <i:InvokeCommandAction Command="{Binding Path=bSidenavCustomWarehousesDataGrid_Click, UpdateSourceTrigger=PropertyChanged}" />
+                        <i:InvokeCommandAction Command="{Binding DataContext.bSidenavCustomWarehousesDataGrid_Click, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </local:CustomButtonSidenav>

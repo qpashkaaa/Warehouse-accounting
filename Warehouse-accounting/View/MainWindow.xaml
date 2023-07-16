@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Warehouse_accounting.View"
         xmlns:myControls ="clr-namespace:Warehouse_accounting.View.Components"
+        xmlns:viewmodel="clr-namespace:Warehouse_accounting.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="1000" Width="1440" 
         ResizeMode="NoResize"
@@ -12,6 +13,9 @@
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
         Icon="/Images/LogoIcon.png" x:Name="MainWindowName">
+    <Window.DataContext>
+        <viewmodel:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="32"></RowDefinition>
@@ -22,7 +26,7 @@
             <ColumnDefinition Width="231"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <myControls:CustomToolBar Grid.Row="0" Grid.ColumnSpan="2"/>
+        <myControls:CustomToolBar Grid.Row="0" Grid.ColumnSpan="2"></myControls:CustomToolBar>
         <myControls:MainWindowBackgroud Grid.Row="1" Grid.ColumnSpan="2"></myControls:MainWindowBackgroud>
         <myControls:Header Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top"></myControls:Header>
         <myControls:Sidenav Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Left"></myControls:Sidenav>

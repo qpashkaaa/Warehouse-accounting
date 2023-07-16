@@ -9,15 +9,15 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Warehouse_accounting.View;
 using Warehouse_accounting.View.Components;
+using System.Diagnostics;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System.Diagnostics;
+using Warehouse_accounting.Storage.ViewModels;
 
 namespace Warehouse_accounting.ViewModel
 {
-    class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
-        private UserControl WarehousesDataGridElement;
         private UserControl _currentPage;
         public UserControl CurrentPage 
         {
@@ -25,11 +25,16 @@ namespace Warehouse_accounting.ViewModel
             set { _currentPage = value; RaisePropertyChanged(() => CurrentPage); }
         }
 
+        public MainWindowViewModel()
+        {
+            MainWindowViewModelStorage.Storage = this;
+        }
+
         public ICommand bSidenavCustomWarehousesDataGrid_Click
         {
             get
             {
-                return new RelayCommand(() => CurrentPage = WarehousesDataGridElement);
+                return new RelayCommand(() => CurrentPage = new WarehousesDataGridElement());
             }
         }
     }
