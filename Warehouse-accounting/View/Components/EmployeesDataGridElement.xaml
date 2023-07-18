@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
-             mc:Ignorable="d" >
+             mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
     <Border x:Name="elemStyle" BorderBrush="#FFFFFF" Background="#FFFFFF" Width="1106" Height="840" Margin="51 41 51 0">
         <Grid>
             <Grid.RowDefinitions>
@@ -19,13 +20,27 @@
             </Grid.ColumnDefinitions>
             <local:CustomDataGridInfoBox Grid.Row="0" Grid.Column="0" Placeholder="Сотрудники" CountElements="3"></local:CustomDataGridInfoBox>
             <local:CustomButtonAdd Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Placeholder="Добавить сотрудника"></local:CustomButtonAdd>
-            <local:CustomDataGridTabControl Grid.Row="1" Grid.ColumnSpan="2" T_1="Все сотрудники" T_2="Должности" ActiveTab="1"></local:CustomDataGridTabControl>
+            <local:CustomTabControlElement Grid.Row="1" Grid.Column="0" Placeholder="Все сотрудники" Width="123" HorizontalAlignment="Left" Active="True">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction Command="{Binding DataContext.bTabControlEmployeesDataGrid_Click, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </local:CustomTabControlElement>
+            <local:CustomTabControlElement Grid.Row="1" Grid.Column="0" Placeholder="Должности" Width="96" HorizontalAlignment="Left" Margin="123 0 0 0">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction Command="{Binding DataContext.bTabControlEmployeesPositionsDataGrid_Click, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </local:CustomTabControlElement>
             <local:CustomTextBoxDataGridSearch Grid.Row="2" Grid.ColumnSpan="2" Placeholder="Поиск сотрудника по ФИО"></local:CustomTextBoxDataGridSearch>
             <Frame 
             Grid.Row="3" Grid.ColumnSpan="2" Margin="0 11 0 0"
             Background="#FFFFFF"
             Content="{Binding CurrentDataGrid}"
-            NavigationUIVisibility="Hidden"/>
+            NavigationUIVisibility="Hidden"
+            Opacity="{Binding FrameOpacity}"/>
         </Grid>
     </Border>
 </UserControl>

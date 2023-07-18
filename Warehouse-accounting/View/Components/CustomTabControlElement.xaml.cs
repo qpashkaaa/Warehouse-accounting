@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Warehouse_accounting.Storage.Components;
 
 namespace Warehouse_accounting.View.Components
 {
@@ -23,6 +24,7 @@ namespace Warehouse_accounting.View.Components
         public CustomTabControlElement()
         {
             InitializeComponent();
+            CustomTabControlElementStorage.Storage.Add(this);
         }
         private string placeholder;
         public string Placeholder
@@ -49,6 +51,29 @@ namespace Warehouse_accounting.View.Components
                     elemPlaceholder.Foreground = (Brush)new BrushConverter().ConvertFrom("#6A1039");
                 }
             }
+        }
+
+        private void btnStyle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            foreach (CustomTabControlElement btn in CustomTabControlElementStorage.Storage)
+            {
+                setUnactive(btn);
+            }
+            setActive();
+        }
+
+        private void setActive()
+        {
+            brdColor.BorderBrush = (Brush)new BrushConverter().ConvertFrom("#6A1039");
+            brdColor.BorderThickness = new Thickness(0, 0, 0, 2);
+            elemPlaceholder.Foreground = (Brush)new BrushConverter().ConvertFrom("#6A1039");
+        }
+
+        private void setUnactive(CustomTabControlElement _btn)
+        {
+            _btn.brdColor.BorderBrush = (Brush)new BrushConverter().ConvertFrom("#EAECF0");
+            _btn.brdColor.BorderThickness = new Thickness(0, 0, 0, 1);
+            _btn.elemPlaceholder.Foreground = (Brush)new BrushConverter().ConvertFrom("#667085");
         }
     }
 }

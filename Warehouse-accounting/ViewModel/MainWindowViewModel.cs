@@ -49,16 +49,16 @@ namespace Warehouse_accounting.ViewModel
         {
             await Task.Factory.StartNew(() =>
             {
-                for (double i = 1.0; i> 0.0; i -= 0.07)
+                for (double i = 1.0; i> 0.0; i -= 0.1)
                 {
                     FrameOpacity = i;
-                    Thread.Sleep(50);
+                    Thread.Sleep(10);
                 }
                 CurrentPage = userControl;
-                for (double i = 0.0; i < 1.1; i += 0.07)
+                for (double i = 0.0; i < 1.1; i += 0.1)
                 {
                     FrameOpacity = i;
-                    Thread.Sleep(50);
+                    Thread.Sleep(10);
                 }
             });
         }
