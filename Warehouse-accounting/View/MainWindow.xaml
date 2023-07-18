@@ -35,6 +35,8 @@
             Grid.Column="2" 
             Background="#FFFFFF"
             Content="{Binding CurrentPage}"
-            NavigationUIVisibility="Hidden"/>
+            NavigationUIVisibility="Hidden"
+            Opacity="{Binding FrameOpacity}"/>
+        <myControls:MainWindowBackgroud Grid.Row="2" Grid.Column="2" Panel.ZIndex="-1"></myControls:MainWindowBackgroud>
     </Grid>
 </Window>

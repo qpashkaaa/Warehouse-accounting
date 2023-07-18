@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Warehouse_accounting.View.Components.WarehousesDataGridElement"
+﻿<UserControl x:Class="Warehouse_accounting.View.Components.EmployeesDataGridElement"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -17,10 +17,10 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:CustomDataGridInfoBox Grid.Row="0" Grid.Column="0" Placeholder="Склады" CountElements="3"></local:CustomDataGridInfoBox>
-            <local:CustomButtonAdd Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Placeholder="Добавить склад"></local:CustomButtonAdd>
-            <local:CustomDataGridTabControl Grid.Row="1" Grid.ColumnSpan="2" T_1="Все склады" ActiveTab="1"></local:CustomDataGridTabControl>
-            <local:CustomTextBoxDataGridSearch Grid.Row="2" Grid.ColumnSpan="2" Placeholder="Поиск склада по адресу"></local:CustomTextBoxDataGridSearch>
+            <local:CustomDataGridInfoBox Grid.Row="0" Grid.Column="0" Placeholder="Сотрудники" CountElements="3"></local:CustomDataGridInfoBox>
+            <local:CustomButtonAdd Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Placeholder="Добавить сотрудника"></local:CustomButtonAdd>
+            <local:CustomDataGridTabControl Grid.Row="1" Grid.ColumnSpan="2" T_1="Все сотрудники" T_2="Должности" ActiveTab="1"></local:CustomDataGridTabControl>
+            <local:CustomTextBoxDataGridSearch Grid.Row="2" Grid.ColumnSpan="2" Placeholder="Поиск сотрудника по ФИО"></local:CustomTextBoxDataGridSearch>
             <Frame 
             Grid.Row="3" Grid.ColumnSpan="2" Margin="0 11 0 0"
             Background="#FFFFFF"

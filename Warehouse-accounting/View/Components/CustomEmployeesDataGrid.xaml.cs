@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Warehouse_accounting.ViewModel;
 
 namespace Warehouse_accounting.View.Components
 {
     /// <summary>
-    /// Логика взаимодействия для WarehousesDataGridElement.xaml
+    /// Логика взаимодействия для CustomEmployeesDataGrid.xaml
     /// </summary>
-    public partial class WarehousesDataGridElement : UserControl
+    public partial class CustomEmployeesDataGrid : UserControl
     {
-        public WarehousesDataGridElement()
+        public CustomEmployeesDataGrid()
         {
             InitializeComponent();
-            DataContext = new WarehousesDataGridElementViewModel();
         }
     }
 }

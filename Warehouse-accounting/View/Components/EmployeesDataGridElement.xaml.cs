@@ -17,14 +17,14 @@ using Warehouse_accounting.ViewModel;
 namespace Warehouse_accounting.View.Components
 {
     /// <summary>
-    /// Логика взаимодействия для WarehousesDataGridElement.xaml
+    /// Логика взаимодействия для EmployeesDataGridElement.xaml
     /// </summary>
-    public partial class WarehousesDataGridElement : UserControl
+    public partial class EmployeesDataGridElement : UserControl
     {
-        public WarehousesDataGridElement()
+        public EmployeesDataGridElement()
         {
             InitializeComponent();
-            DataContext = new WarehousesDataGridElementViewModel();
+            DataContext = new EmployeesDataGridElementViewModel();
         }
     }
 }
