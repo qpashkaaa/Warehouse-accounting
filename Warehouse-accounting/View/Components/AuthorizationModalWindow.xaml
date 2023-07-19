@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
     <Grid>
         <local:ModalWindowBackground></local:ModalWindowBackground>
         <Border x:Name="WindowBorder" BorderThickness="0"
@@ -13,9 +14,15 @@
         <StackPanel Width="526" Height="460">
             <Image Source="/Images/AuthorizationIcon.png" Width="48" HorizontalAlignment="Left" Margin="40 40 0 0"></Image>
             <TextBlock Text="Авторизация" FontSize="21" Margin="40 31 0 0" FontWeight="Bold"></TextBlock>
-            <local:CustomTextBox Placeholder="Логин"></local:CustomTextBox>
-            <local:CustomPasswordBox Placeholder="Пароль"></local:CustomPasswordBox>
-            <local:CustomButtonExecute Placeholder="Войти"></local:CustomButtonExecute>
+            <local:CustomTextBox Placeholder="Логин" CustomTextBoxText="{Binding Login}"></local:CustomTextBox>
+            <local:CustomPasswordBox Placeholder="Пароль" Password="{Binding Password}"/>
+            <local:CustomButtonExecute Placeholder="Войти">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction Command="{Binding bAuthorizationModalWindow_Click}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </local:CustomButtonExecute>
         </StackPanel>
     </Grid>
 </UserControl>

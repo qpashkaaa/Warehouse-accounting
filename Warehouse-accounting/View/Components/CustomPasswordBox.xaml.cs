@@ -1,29 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Warehouse_accounting.View.Components
 {
     /// <summary>
-    /// Логика взаимодействия для CustomPasswordBox.xaml
+    /// Логика взаимодействия для BindablePasswordBox.xaml
     /// </summary>
     public partial class CustomPasswordBox : UserControl
     {
+        private bool _isPasswordChanging;
+
+        public static readonly DependencyProperty PasswordProperty =
+            DependencyProperty.Register("Password", typeof(string), typeof(CustomPasswordBox),
+                new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    PasswordPropertyChanged, null, false, UpdateSourceTrigger.PropertyChanged));
+
+        private static void PasswordPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is CustomPasswordBox passwordBox)
+            {
+                passwordBox.UpdatePassword();
+            }
+        }
+
+        public string Password
+        {
+            get { return (string)GetValue(PasswordProperty); }
+            set { SetValue(PasswordProperty, value); }
+        }
+
         public CustomPasswordBox()
         {
             InitializeComponent();
         }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(passwordBox.Password))
+                tbPlaceholder.Visibility = Visibility.Visible;
+            else
+                tbPlaceholder.Visibility = Visibility.Hidden;
+            _isPasswordChanging = true;
+            Password = passwordBox.Password;
+            _isPasswordChanging = false;
+        }
+
+        private void UpdatePassword()
+        {
+            if (!_isPasswordChanging)
+            {
+                passwordBox.Password = Password;
+            }
+        }
+
         private string placeholder;
 
         public string Placeholder
@@ -34,14 +64,6 @@ namespace Warehouse_accounting.View.Components
                 placeholder = value;
                 tbPlaceholder.Text = placeholder;
             }
-        }
-
-        private void txtInput_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtInput.Password))
-                tbPlaceholder.Visibility = Visibility.Visible;
-            else
-                tbPlaceholder.Visibility = Visibility.Hidden;
         }
     }
 }

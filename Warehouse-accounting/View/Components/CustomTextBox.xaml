@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
-             mc:Ignorable="d">
+             mc:Ignorable="d" x:Name="tb_UserControl">
     <Border BorderThickness="1"
             CornerRadius="8,8,8,8" BorderBrush="#EFF1F4" Background="#FFFFFF" Width="446" Height="45" Margin="0 31 0 0">
         <Grid>
-        <TextBox x:Name="txtInput" Width="436" Height="35" Background="Transparent" BorderBrush="#EFF1F4" BorderThickness="0" TextAlignment="Left" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" TextChanged="txtInput_TextChanged"></TextBox>
+            <TextBox x:Name="txtInput" Width="436" Height="35" Background="Transparent" BorderBrush="#EFF1F4" BorderThickness="0" TextAlignment="Left" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" TextChanged="txtInput_TextChanged" Text="{Binding ElementName=tb_UserControl, Path=CustomTextBoxText, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <TextBlock x:Name="tbPlaceholder" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Panel.ZIndex="-1" Margin="8 0 0 0"/>
     </Grid>
     </Border>

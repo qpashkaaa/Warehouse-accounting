@@ -24,6 +24,21 @@ namespace Warehouse_accounting.View.Components
         {
             InitializeComponent();
         }
+
+        public static DependencyProperty CustomTextBoxTextProperty = DependencyProperty.Register(
+            "CustomTextBoxText",
+            typeof(string),
+            typeof(CustomTextBox),
+            new FrameworkPropertyMetadata(
+            null, // default value
+            FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public string CustomTextBoxText
+        {
+            get { return (string)GetValue(CustomTextBoxTextProperty); }
+            set { SetValue(CustomTextBoxTextProperty, value); }
+        }
+
         private string placeholder;
 
         public string Placeholder

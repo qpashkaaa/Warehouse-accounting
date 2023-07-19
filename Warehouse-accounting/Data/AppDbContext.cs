@@ -31,7 +31,6 @@ namespace Warehouse_accounting.Data
         #endregion
 
         public AppDbContext() {
-            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
