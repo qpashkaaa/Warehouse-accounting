@@ -24,13 +24,5 @@ namespace Warehouse_accounting.View.Components
         {
             InitializeComponent();
         }
-
-        private void btnExit_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            AuthorizationWindow authorizationWindow = new AuthorizationWindow();
-            authorizationWindow.Owner = System.Windows.Application.Current.MainWindow;
-            authorizationWindow.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            authorizationWindow.Show();
-        }
     }
 }

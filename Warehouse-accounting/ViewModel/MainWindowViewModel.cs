@@ -11,6 +11,12 @@ namespace Warehouse_accounting.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        public IWindowService _windowService;
+        private void OnOpenAuthorizationWindow()
+        {
+            _windowService.OpenAuthorizationWindow();
+        }
+
         private UserControl _currentPage;
         public UserControl CurrentPage 
         {
@@ -43,6 +49,14 @@ namespace Warehouse_accounting.ViewModel
             get
             {
                 return new RelayCommand(() => SlowOpacity(new EmployeesDataGridElement()));
+            }
+        }
+
+        public ICommand bSidenavExit_Click
+        {
+            get
+            {
+                return new RelayCommand(() => OnOpenAuthorizationWindow());
             }
         }
 

@@ -41,7 +41,13 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </local:CustomButtonSidenav>
-            <local:CustomButtonSidenavExit Grid.Row="16" Margin="0 20 0 0"></local:CustomButtonSidenavExit>
+            <local:CustomButtonSidenavExit Grid.Row="16" Margin="0 20 0 0">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction Command="{Binding DataContext.bSidenavExit_Click, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </local:CustomButtonSidenavExit>
         </Grid>
     </Border>
 </UserControl>

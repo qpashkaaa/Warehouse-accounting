@@ -9,5 +9,7 @@ namespace Warehouse_accounting.Tools
     public interface IWindowService
     {
         void OpenMainWindow();
+
+        void OpenAuthorizationWindow();
     }
 }

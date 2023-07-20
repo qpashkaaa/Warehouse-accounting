@@ -18,7 +18,7 @@ namespace Warehouse_accounting.Tools
 
         public void OpenAuthorizationWindow()
         {
-            var window = new MainWindow();
+            var window = new AuthorizationWindow();
             window.Show();
         }
     }
