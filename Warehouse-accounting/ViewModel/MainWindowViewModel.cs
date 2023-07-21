@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Threading.Tasks;
 using System.Threading;
 using Warehouse_accounting.Tools;
+using Warehouse_accounting.Storage;
 
 namespace Warehouse_accounting.ViewModel
 {
@@ -16,6 +17,8 @@ namespace Warehouse_accounting.ViewModel
         {
             _windowService.OpenAuthorizationWindow();
         }
+
+        public string UserName { get; set; }
 
         private UserControl _currentPage;
         public UserControl CurrentPage 
@@ -34,6 +37,7 @@ namespace Warehouse_accounting.ViewModel
         public MainWindowViewModel()
         {
             FrameOpacity = 1;
+            UserName = UserNameStorage.Storage;
         }
 
         public ICommand bSidenavWarehousesDataGridElement_Click

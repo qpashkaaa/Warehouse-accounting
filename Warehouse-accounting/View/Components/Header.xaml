@@ -8,7 +8,7 @@
     <Border BorderThickness="1"
              BorderBrush="#EFF1F4" Background="#FFFFFF" Width="1209" Height="89">
         <Grid>
-            <local:CustomIconUser Placeholder="AA" HorizontalAlignment="Right" Margin="0 0 51 0"></local:CustomIconUser>
+            <local:CustomIconUser x:Name="UserIcon" HorizontalAlignment="Right" Margin="0 0 51 0"></local:CustomIconUser>
         </Grid>
     </Border>
 </UserControl>

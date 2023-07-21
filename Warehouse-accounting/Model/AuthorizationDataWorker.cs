@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Warehouse_accounting.Data;
 using Warehouse_accounting.Model.DbModels;
+using Warehouse_accounting.Storage;
 
 namespace Warehouse_accounting.Model
 {
@@ -25,6 +26,10 @@ namespace Warehouse_accounting.Model
             using (AppDbContext db = new AppDbContext())
             {
                 bool result = db.AuthorizationDatas.Any(d=>d.Login == login && d.Password == password);
+                UserNameStorage.Storage = db.AuthorizationDatas.
+                    Where(d => d.Login == login && d.Password == password).
+                    Select(d => d.UserName).
+                    SingleOrDefault();
                 return result;
             }
         }
