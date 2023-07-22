@@ -11,8 +11,7 @@
             <Style TargetType="Border">
                 <Setter Property="BorderBrush" Value="#EFF1F4" />
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding CorrectData, UpdateSourceTrigger=PropertyChanged}"
-                             Value="False">
+                    <DataTrigger Binding="{Binding CorrectData, UpdateSourceTrigger=PropertyChanged}" Value="False">
                         <Setter Property="BorderBrush" Value="#6A1039" />
                     </DataTrigger>
                 </Style.Triggers>
