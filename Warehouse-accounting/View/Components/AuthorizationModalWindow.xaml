@@ -13,8 +13,22 @@
         </Border>
         <StackPanel Width="526" Height="460">
             <Image Source="/Images/AuthorizationIcon.png" Width="48" HorizontalAlignment="Left" Margin="40 40 0 0"></Image>
-            <TextBlock Text="Авторизация" FontSize="21" Margin="40 31 0 0" FontWeight="Bold"></TextBlock>
-            <local:CustomTextBox Placeholder="Логин" CustomTextBoxText="{Binding Login}"></local:CustomTextBox>
+            <TextBlock FontSize="21" Margin="40 31 0 0" FontWeight="Bold">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Text" Value="Авторизация" />
+                        <Setter Property="Foreground" Value="#15294B"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CorrectData, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                                <Setter Property="Text" Value="Неверный логин или пароль" />
+                                <Setter Property="Foreground" Value="#6A1039"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <local:CustomTextBox Placeholder="Логин" 
+                                 CustomTextBoxText="{Binding Login}"/>
             <local:CustomPasswordBox Placeholder="Пароль" Password="{Binding Password}"/>
             <local:CustomButtonExecute Placeholder="Войти">
                 <i:Interaction.Triggers>

@@ -1,12 +1,15 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using Warehouse_accounting.Model;
 using Warehouse_accounting.Model.DbModels;
 using Warehouse_accounting.Tools;
@@ -14,7 +17,7 @@ using Warehouse_accounting.View;
 
 namespace Warehouse_accounting.ViewModel
 {
-    public class AuthorizationModalWindowViewModel
+    public class AuthorizationModalWindowViewModel : ViewModelBase
     {
         private IWindowService _windowService;
         private void OnOpenMainWindow()
@@ -25,6 +28,18 @@ namespace Warehouse_accounting.ViewModel
         public AuthorizationModalWindowViewModel(IWindowService windowService)
         {
             _windowService = windowService;
+            CorrectData = true;
+        }
+
+        private bool correctData;
+        public bool CorrectData
+        {
+            get { return correctData; }
+            set 
+            { 
+                correctData = value;
+                RaisePropertyChanged("CorrectData");
+            }
         }
 
         public string Login { get; set; }
@@ -46,12 +61,12 @@ namespace Warehouse_accounting.ViewModel
         {
             if (AuthorizationDataWorker.CheckAuthorizationDatas(Login, Password) == true)
             {
+                CorrectData = true;
                 OnOpenMainWindow();
             }
             else
             {
-                // Обводка элементов красным цветом
-                MessageBox.Show("Не найдено!");
+                CorrectData = false;
             }
 
         }
