@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
              mc:Ignorable="d">
-    <Grid>
+    <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1048"></ColumnDefinition>
             <ColumnDefinition Width="58"></ColumnDefinition>
@@ -23,6 +23,6 @@
         </Grid.RowDefinitions>
         <local:CustomHeaderCellDataGridMainInfo Grid.Row="0" Grid.Column="0" Placeholder="Должность"></local:CustomHeaderCellDataGridMainInfo>
         <local:CustomHeaderCellDataGridLast Grid.Row="0" Grid.Column="4"></local:CustomHeaderCellDataGridLast>
-        <local:CustomDataGridFooter Grid.Row="8" Grid.ColumnSpan="5"></local:CustomDataGridFooter>
+        <local:CustomDataGridFooter x:Name="Footer" Grid.Row="8" Grid.ColumnSpan="5"></local:CustomDataGridFooter>
     </Grid>
 </UserControl>

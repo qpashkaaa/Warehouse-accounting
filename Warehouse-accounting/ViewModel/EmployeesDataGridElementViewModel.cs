@@ -2,19 +2,55 @@
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Warehouse_accounting.Model;
+using Warehouse_accounting.Model.DbModels;
+using Warehouse_accounting.Storage;
 using Warehouse_accounting.View.Components;
 
 namespace Warehouse_accounting.ViewModel
 {
-    internal class EmployeesDataGridElementViewModel : ViewModelBase
+    public class EmployeesDataGridElementViewModel : ViewModelBase
     {
-        private UserControl CustomEmployeesDataGrid;
+        #region VARIABLES
+        private const int countTableRows = 7;
+        private int countTableElements;
+        public int CountTableElements
+        {
+            get { return countTableElements; }
+            set
+            {
+                countTableElements = value;
+                RaisePropertyChanged("CountTableElements");
+            }
+        }
+
+        private int activePage;
+        public int ActivePage
+        {
+            get { return activePage; }
+            set
+            {
+                activePage = value;
+                RaisePropertyChanged("ActivePage");
+            }
+        }
+        private string tableName;
+        public string TableName
+        {
+            get { return tableName; }
+            set
+            {
+                tableName = value;
+                RaisePropertyChanged("TableName");
+            }
+        }
 
         private UserControl _currentDataGrid;
         public UserControl CurrentDataGrid
@@ -29,19 +65,23 @@ namespace Warehouse_accounting.ViewModel
             get { return _frameOpacity; }
             set { _frameOpacity = value; RaisePropertyChanged(() => FrameOpacity); }
         }
+        #endregion
 
+        #region CONSTRUCTOR
         public EmployeesDataGridElementViewModel()
         {
-            CustomEmployeesDataGrid = new CustomEmployeesDataGrid();
-            CurrentDataGrid = CustomEmployeesDataGrid;
             FrameOpacity = 1;
+            EmployeesDataGridElementViewModelStorage.Storage = this;
+            ShowEmployeeTable();
         }
+        #endregion
 
+        #region BUTTON_COMMANDS
         public ICommand bTabControlEmployeesDataGrid_Click
         {
             get
             {
-                return new RelayCommand(() => SlowOpacity(new CustomEmployeesDataGrid()));
+                return new RelayCommand(() => ShowEmployeeTable());
             }
         }
 
@@ -49,26 +89,25 @@ namespace Warehouse_accounting.ViewModel
         {
             get
             {
-                return new RelayCommand(() => SlowOpacity(new CustomEmployeesPostitionsDataGrid()));
+                return new RelayCommand(() => ShowEmployeePositionsTable());
             }
         }
+        #endregion
 
-        private async void SlowOpacity(UserControl userControl)
+        #region EMPLOYEES_TABLES_METHOODS
+        private void ShowEmployeeTable()
         {
-            await Task.Factory.StartNew(() =>
-            {
-                for (double i = 1.0; i > 0.0; i -= 0.1)
-                {
-                    FrameOpacity = i;
-                    Thread.Sleep(10);
-                }
-                CurrentDataGrid = userControl;
-                for (double i = 0.0; i < 1.1; i += 0.1)
-                {
-                    FrameOpacity = i;
-                    Thread.Sleep(10);
-                }
-            });
+            TableName = "Сотрудники";
+            CountTableElements = EmployeeDataWorker.GetEmployees().Count;
+            new CustomEmployeesDataGridViewModel();
         }
+
+        private void ShowEmployeePositionsTable()
+        {
+            TableName = "Должности";
+            CountTableElements = EmployeeDataWorker.GetEmployeePositions().Count;
+            new CustomEmployeesPostitionsDataGridViewModel();
+        }
+        #endregion
     }
 }

@@ -17,8 +17,8 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:CustomDataGridInfoBox Grid.Row="0" Grid.Column="0" Placeholder="Склады" CountElements="3"></local:CustomDataGridInfoBox>
-            <local:CustomButtonAdd Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Placeholder="Добавить склад"></local:CustomButtonAdd>
+            <local:CustomDataGridInfoBox Grid.Row="0" Grid.Column="0" TableName="{Binding TableName, UpdateSourceTrigger=PropertyChanged}" CountTableElements="{Binding CountTableElements, UpdateSourceTrigger=PropertyChanged}"></local:CustomDataGridInfoBox>
+            <local:CustomButtonAdd Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Placeholder="Добавить"></local:CustomButtonAdd>
             <local:CustomDataGridTabControl Grid.Row="1" Grid.ColumnSpan="2" T_1="Все склады" ActiveTab="1"></local:CustomDataGridTabControl>
             <local:CustomTextBoxDataGridSearch Grid.Row="2" Grid.ColumnSpan="2" Placeholder="Поиск склада по адресу"></local:CustomTextBoxDataGridSearch>
             <Frame 

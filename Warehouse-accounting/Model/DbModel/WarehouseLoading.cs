@@ -10,6 +10,7 @@ namespace Warehouse_accounting.Model.DbModels
     {
         public int Id { get; set; }
         public int LoadingPercent { get; set; }
+        public int WarehouseId { get; set; }
         public Warehouse Warehouse { get; set; }
     }
 }

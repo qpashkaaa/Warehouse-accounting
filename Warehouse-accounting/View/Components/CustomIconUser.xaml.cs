@@ -32,23 +32,26 @@ namespace Warehouse_accounting.View.Components
             set
             {
                 placeholder = value;
-                if (placeholder.Length != 2)
+                if (placeholder.Length != 0)
                 {
-                    string iconShortName;
-                    string[] name = placeholder.Split(' ');
-                    if (name.Length > 1)
+                    if (placeholder.Length != 2)
                     {
-                        iconShortName = name[0][0].ToString().ToUpper() + name[1][0].ToString().ToUpper();
+                        string iconShortName;
+                        string[] name = placeholder.Split(' ');
+                        if (name.Length > 1)
+                        {
+                            iconShortName = name[0][0].ToString().ToUpper() + name[1][0].ToString().ToUpper();
+                        }
+                        else
+                        {
+                            iconShortName = name[0][0].ToString().ToUpper();
+                        }
+                        icnPlaceholder.Text = iconShortName;
                     }
                     else
                     {
-                        iconShortName = name[0][0].ToString().ToUpper();
+                        icnPlaceholder.Text = placeholder;
                     }
-                    icnPlaceholder.Text = iconShortName;
-                }
-                else
-                {
-                    icnPlaceholder.Text = placeholder;
                 }
             }
         }

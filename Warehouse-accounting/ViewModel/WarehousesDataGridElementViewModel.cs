@@ -12,6 +12,28 @@ namespace Warehouse_accounting.ViewModel
 {
     public class WarehousesDataGridElementViewModel : ViewModelBase
     {
+        private int countTableElements;
+        public int CountTableElements
+        {
+            get { return countTableElements; }
+            set
+            {
+                countTableElements = value;
+                RaisePropertyChanged("CountTableElements");
+            }
+        }
+
+        private string tableName;
+        public string TableName
+        {
+            get { return tableName; }
+            set
+            {
+                tableName = value;
+                RaisePropertyChanged("TableName");
+            }
+        }
+
         private UserControl CustomWarehousesDataGrid;
 
         private UserControl _currentDataGrid;
@@ -25,6 +47,7 @@ namespace Warehouse_accounting.ViewModel
         {
             CustomWarehousesDataGrid = new CustomWarehousesDataGrid();
             CurrentDataGrid = CustomWarehousesDataGrid;
+            TableName = "Склады";
         }
     }
 }

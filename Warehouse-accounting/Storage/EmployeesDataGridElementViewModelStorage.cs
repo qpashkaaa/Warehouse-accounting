@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Warehouse_accounting.View.Components;
+using Warehouse_accounting.ViewModel;
 
 namespace Warehouse_accounting.Storage
 {
-    public static class UserNameStorage
+    public static class EmployeesDataGridElementViewModelStorage
     {
-        public static string Storage = "";
+        public static EmployeesDataGridElementViewModel Storage;
     }
 }

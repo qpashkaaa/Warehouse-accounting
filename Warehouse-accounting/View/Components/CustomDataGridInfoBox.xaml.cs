@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,28 +26,32 @@ namespace Warehouse_accounting.View.Components
             InitializeComponent();
         }
 
-        private string placeholder;
-        public string Placeholder
+        public static DependencyProperty TableNameProperty = DependencyProperty.Register(
+            "TableName",
+            typeof(string),
+            typeof(CustomDataGridInfoBox),
+            new FrameworkPropertyMetadata(
+            null, // default value
+            FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public string TableName
         {
-            get { return placeholder; }
-            set
-            {
-                placeholder = value;
-                cellPlaceholder.Text = placeholder;
-            }
+            get { return (string)GetValue(TableNameProperty); }
+            set { SetValue(TableNameProperty, value); }
         }
 
-        private int countElements;
-        public int CountElements
+        public static DependencyProperty CountTableElementsProperty = DependencyProperty.Register(
+            "CountTableElements",
+            typeof(int),
+            typeof(CustomDataGridInfoBox),
+            new FrameworkPropertyMetadata(
+            0, // default value
+            FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public int CountTableElements
         {
-            get { return countElements; }
-            set
-            {
-                countElements = value;
-                dtGridElementsCount.Text = countElements.ToString();
-            }
+            get { return (int)GetValue(CountTableElementsProperty); }
+            set { SetValue(CountTableElementsProperty, value); }
         }
-
-
     }
 }

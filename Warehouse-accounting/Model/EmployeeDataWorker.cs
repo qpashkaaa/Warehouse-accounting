@@ -7,6 +7,9 @@ using Warehouse_accounting.Data;
 using Warehouse_accounting.Model.DbModels;
 using System.Linq;
 using System.Timers;
+using Warehouse_accounting.Storage;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace Warehouse_accounting.Model
 {
@@ -22,11 +25,60 @@ namespace Warehouse_accounting.Model
             }
         }
 
+        public static List<Employee> GetEmployeesRange(int activePage)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                int rangeStartValue = (activePage * 7) - 6;
+                int rangeEndValue = (activePage * 7);
+                var result = db.Employees.
+                    Where(d => d.Id >= rangeStartValue && d.Id <= rangeEndValue).
+                    ToList();
+                foreach (var item in result)
+                {
+                    item.EmployeePosition = db.EmployeePositions.FirstOrDefault(d => d.Id == item.EmployeePositionId);
+                    item.WorkGroup = db.WorkGroups.FirstOrDefault(d => d.Id == item.WorkGroupId);
+                    item.EmployeeStatus = db.EmployeeStatuses.FirstOrDefault(d => d.Id == item.EmployeeStatusId);
+                }
+                return result;
+            }
+        }
+
+        public static List<WorkGroup> GetEmployeeWorkGroups()
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                var result = db.WorkGroups.AsNoTracking().ToList();
+                return result;
+            }
+        }
+
+        public static List<EmployeeStatus> GetEmployeeStatuses()
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                var result = db.EmployeeStatuses.AsNoTracking().ToList();
+                return result;
+            }
+        }
         public static List<EmployeePosition> GetEmployeePositions()
         {
             using (AppDbContext db = new AppDbContext())
             {
                 var result = db.EmployeePositions.ToList();
+                return result;
+            }
+        }
+
+        public static List<EmployeePosition> GetEmployeePositionsRange(int activePage)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                int rangeStartValue = (activePage * 7) - 6;
+                int rangeEndValue = (activePage * 7);
+                var result = db.EmployeePositions.
+                    Where(d => d.Id >= rangeStartValue && d.Id <= rangeEndValue).
+                    ToList();
                 return result;
             }
         }

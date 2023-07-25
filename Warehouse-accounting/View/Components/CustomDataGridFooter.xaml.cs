@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Warehouse_accounting.Storage;
 
 namespace Warehouse_accounting.View.Components
 {
@@ -23,6 +24,7 @@ namespace Warehouse_accounting.View.Components
         public CustomDataGridFooter()
         {
             InitializeComponent();
+            DataContext = DataGridViewModelStorage.Storage;
         }
 
         private int activePage;

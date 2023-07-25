@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
-             mc:Ignorable="d" >
+             mc:Ignorable="d"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
     <Border x:Name="btnStyle" BorderThickness="1 0 1 1"
             CornerRadius="0,0,8,8" BorderBrush="#EAECF0" Background="#FFFFFF" Width="1106" Height="90">
         <Grid x:Name="gridColumn">
@@ -21,7 +22,13 @@
                 <ColumnDefinition Width="335"></ColumnDefinition>
                 <ColumnDefinition Width="71.5"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:CustomButtonBckArrow Grid.Column="0"></local:CustomButtonBckArrow>
+            <local:CustomButtonBckArrow Grid.Column="0">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction Command="{Binding DataContext.bFooterBackEmployeesPositionsDataGrid_Click, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </local:CustomButtonBckArrow>
             <local:CustomButtonDataGridPage x:Name="btn_1" Grid.Column="2"></local:CustomButtonDataGridPage>
             <local:CustomButtonDataGridPage x:Name="btn_2" Grid.Column="3"></local:CustomButtonDataGridPage>
             <local:CustomButtonDataGridPage x:Name="btn_3" Grid.Column="4"></local:CustomButtonDataGridPage>
@@ -29,7 +36,13 @@
             <local:CustomButtonDataGridPage x:Name="btn_5" Grid.Column="6"></local:CustomButtonDataGridPage>
             <local:CustomButtonDataGridPage x:Name="btn_6" Grid.Column="7"></local:CustomButtonDataGridPage>
             <local:CustomButtonDataGridPage x:Name="btn_7" Grid.Column="8"></local:CustomButtonDataGridPage>
-            <local:CustomButtonFwdArrow Grid.Column="10"></local:CustomButtonFwdArrow>
+            <local:CustomButtonFwdArrow Grid.Column="10">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction Command="{Binding DataContext.bFooterForwardEmployeesPositionsDataGrid_Click, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </local:CustomButtonFwdArrow>
         </Grid>
     </Border>
 </UserControl>
