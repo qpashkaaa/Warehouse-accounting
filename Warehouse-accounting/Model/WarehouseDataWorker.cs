@@ -21,6 +21,24 @@ namespace Warehouse_accounting.Model
             }
         }
 
+        public static List<Warehouse> GetWarehousesRange(int activePage)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                int rangeStartValue = (activePage * 7) - 6;
+                int rangeEndValue = (activePage * 7);
+                var result = db.Warehouses.
+                    Where(d => d.Id >= rangeStartValue && d.Id <= rangeEndValue).
+                    ToList();
+                foreach (var item in result)
+                {
+                    item.WarehouseAddress = db.WarehouseAddresses.FirstOrDefault(d => d.Id == item.WarehouseAddressId);
+                    item.WarehouseStatus = db.WarehouseStatuses.FirstOrDefault(d => d.Id == item.WarehouseStatusId);
+                }
+                return result;
+            }
+        }
+
         public static List<WarehouseStatus> GetWarehouseStatuses()
         {
             using (AppDbContext db = new AppDbContext())

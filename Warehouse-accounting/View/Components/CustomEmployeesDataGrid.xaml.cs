@@ -45,23 +45,25 @@ namespace Warehouse_accounting.View.Components
                     CustomCellDataGridTextInfo textInfo = new CustomCellDataGridTextInfo();
                     CustomCellDataGridStatus statusElem = new CustomCellDataGridStatus();
                     CustomCellDataGridEdit editElem = new CustomCellDataGridEdit();
-                    mainInfo.Placeholder = dataGridList[i - 1].Name + " " + dataGridList[i - 1].Surname;
+                    Employee listElem = dataGridList[i - 1];
+
+                    mainInfo.Placeholder = listElem.Name + " " + listElem.Surname;
                     grid.Children.Add(mainInfo);
                     Grid.SetColumn(mainInfo, 0);
                     Grid.SetRow(mainInfo, i);
 
-                    idElem.Placeholder = dataGridList[i - 1].UniqueNumber;
+                    idElem.Placeholder = listElem.UniqueNumber;
                     grid.Children.Add(idElem);
                     Grid.SetColumn(idElem, 1);
                     Grid.SetRow(idElem, i);
 
-                    textInfo.Placeholder = dataGridList[i - 1].EmployeePosition.Position;
-                    textInfo.OptPlaceholder = dataGridList[i - 1].WorkGroup.Group;
+                    textInfo.Placeholder = listElem.EmployeePosition.Position;
+                    textInfo.OptPlaceholder = listElem.WorkGroup.Group;
                     grid.Children.Add(textInfo);
                     Grid.SetColumn(textInfo, 2);
                     Grid.SetRow(textInfo, i);
 
-                    statusElem.Placeholder = dataGridList[i - 1].EmployeeStatus.Status;
+                    statusElem.Placeholder = listElem.EmployeeStatus.Status;
                     grid.Children.Add(statusElem);
                     Grid.SetColumn(statusElem, 3);
                     Grid.SetRow(statusElem, i);

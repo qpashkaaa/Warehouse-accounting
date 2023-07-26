@@ -19,7 +19,6 @@ namespace Warehouse_accounting.ViewModel
     public class EmployeesDataGridElementViewModel : ViewModelBase
     {
         #region VARIABLES
-        private const int countTableRows = 7;
         private int countTableElements;
         public int CountTableElements
         {

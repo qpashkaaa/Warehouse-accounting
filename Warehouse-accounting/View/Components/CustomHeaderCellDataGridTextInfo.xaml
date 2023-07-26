@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
              mc:Ignorable="d" >
-    <Border x:Name="brdSettings" BorderThickness="1" BorderBrush="#EAECF0" Background="#FAFBFB" Height="44">
+    <Border x:Name="brdSettings" BorderThickness="0 1 0 1" BorderBrush="#EAECF0" Background="#FAFBFB" Height="44">
         <Grid>
             <TextBlock Grid.Column="1" x:Name="cellPlaceholder" FontSize="12" FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Left" Panel.ZIndex="-1" Foreground="#42526D" Margin="24 0 0 0"/>
         </Grid>
