@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,12 +30,9 @@ namespace Warehouse_accounting.Model
                 int rangeEndValue = (activePage * 7);
                 var result = db.Warehouses.
                     Where(d => d.Id >= rangeStartValue && d.Id <= rangeEndValue).
+                    Include(d => d.WarehouseAddress).
+                    Include(d => d.WarehouseStatus).
                     ToList();
-                foreach (var item in result)
-                {
-                    item.WarehouseAddress = db.WarehouseAddresses.FirstOrDefault(d => d.Id == item.WarehouseAddressId);
-                    item.WarehouseStatus = db.WarehouseStatuses.FirstOrDefault(d => d.Id == item.WarehouseStatusId);
-                }
                 return result;
             }
         }

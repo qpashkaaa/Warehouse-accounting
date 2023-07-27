@@ -33,13 +33,10 @@ namespace Warehouse_accounting.Model
                 int rangeEndValue = (activePage * 7);
                 var result = db.Employees.
                     Where(d => d.Id >= rangeStartValue && d.Id <= rangeEndValue).
+                    Include(d => d.EmployeePosition).
+                    Include(d => d.WorkGroup).
+                    Include(d=> d.EmployeeStatus).
                     ToList();
-                foreach (var item in result)
-                {
-                    item.EmployeePosition = db.EmployeePositions.FirstOrDefault(d => d.Id == item.EmployeePositionId);
-                    item.WorkGroup = db.WorkGroups.FirstOrDefault(d => d.Id == item.WorkGroupId);
-                    item.EmployeeStatus = db.EmployeeStatuses.FirstOrDefault(d => d.Id == item.EmployeeStatusId);
-                }
                 return result;
             }
         }
