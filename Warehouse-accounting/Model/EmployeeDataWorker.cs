@@ -29,10 +29,9 @@ namespace Warehouse_accounting.Model
         {
             using (AppDbContext db = new AppDbContext())
             {
-                int rangeStartValue = (activePage * 7) - 6;
-                int rangeEndValue = (activePage * 7);
+                int rangeStartValue = (activePage * 7) - 7;
                 var result = db.Employees.
-                    Where(d => d.Id >= rangeStartValue && d.Id <= rangeEndValue).
+                    Skip(rangeStartValue).Take(7).
                     Include(d => d.EmployeePosition).
                     Include(d => d.WorkGroup).
                     Include(d=> d.EmployeeStatus).
@@ -46,6 +45,15 @@ namespace Warehouse_accounting.Model
             using (AppDbContext db = new AppDbContext())
             {
                 var result = db.WorkGroups.AsNoTracking().ToList();
+                return result;
+            }
+        }
+
+        public static List<string> GetEmployeeWorkGroupsText()
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                var result = db.WorkGroups.Select(d => d.Group).ToList();
                 return result;
             }
         }
@@ -67,6 +75,15 @@ namespace Warehouse_accounting.Model
             }
         }
 
+        public static List<string> GetEmployeePositionsText()
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                var result = db.EmployeePositions.Select(d => d.Position).ToList();
+                return result;
+            }
+        }
+
         public static List<EmployeePosition> GetEmployeePositionsRange(int activePage)
         {
             using (AppDbContext db = new AppDbContext())
@@ -83,24 +100,45 @@ namespace Warehouse_accounting.Model
 
         #region ADD_METHOODS
         // add employee
-        public static string AddEmployee(string surname, string name, string patronymic, string uniqueNumber, EmployeePosition employeePosition, WorkGroup workGroup, EmployeeStatus employeeStatus)
+        public static string AddEmployee(string surname, string name, string patronymic, string uniqueNumber, string employeePosition, string workGroup)
         {
             using (AppDbContext db = new AppDbContext())
             {
+                // Take objects from string
+                int employeePositionId = db.EmployeePositions.Where(d => d.Position == employeePosition).FirstOrDefault().Id;
+                int workGroupId = db.WorkGroups.Where(d => d.Group == workGroup).FirstOrDefault().Id;
+
+                // create new object
                 Employee newEmployee = new Employee()
                 {
                     Surname = surname,
                     Name = name,
                     Patronymic = patronymic,
                     UniqueNumber = uniqueNumber,
-                    EmployeePosition = employeePosition,
-                    EmployeeStatus = employeeStatus,
-                    WorkGroup = workGroup
+                    EmployeePositionId = employeePositionId,
+                    EmployeeStatusId = 2,
+                    WorkGroupId = workGroupId
                 };
+
+                // add object
                 db.Employees.Add(newEmployee);
-                db.SaveChanges();
+                try
+                {
+                    int requestResult = db.SaveChanges();
+                    if (requestResult == 1)
+                    {
+                        return "Данные добавлены";
+                    }
+                    else
+                    {
+                        return "Ошибка добавления";
+                    }
+                }
+                catch
+                {
+                    return "Ошибка добавления";
+                }
             }
-            return "Данные добавлены";
         }
 
         // add position
@@ -170,6 +208,17 @@ namespace Warehouse_accounting.Model
                 db.SaveChanges();
             }
             return "Данные обновлены";
+        }
+        #endregion
+
+        #region CHECK_METHOODS
+        public static bool CheckEmployeeUniqueNumber(string uniqueNumber)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                bool result = db.Employees.Any(d => d.UniqueNumber == uniqueNumber);
+                return result;
+            }
         }
         #endregion
     }

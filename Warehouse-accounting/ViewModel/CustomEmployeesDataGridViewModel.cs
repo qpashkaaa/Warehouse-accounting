@@ -45,8 +45,9 @@ namespace Warehouse_accounting.ViewModel
         public CustomEmployeesDataGridViewModel()
         {
             DataGridViewModelStorage.Storage = this;
+            List<Employee> employees = EmployeeDataWorker.GetEmployees();
             ActivePage = 1;
-            CountTableElements = EmployeeDataWorker.GetEmployees().Count;
+            CountTableElements = employees.Count;
             DrawTable();
         }
         #endregion

@@ -34,5 +34,11 @@ namespace Warehouse_accounting.View.Components
         {
             System.Windows.Application.Current.Windows[0].WindowState = WindowState.Minimized;
         }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                System.Windows.Application.Current.Windows[0].DragMove();
+        }
     }
 }

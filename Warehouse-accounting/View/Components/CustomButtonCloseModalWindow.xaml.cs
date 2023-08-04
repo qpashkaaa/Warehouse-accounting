@@ -12,22 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Warehouse_accounting.Storage;
-using Warehouse_accounting.Tools;
-using Warehouse_accounting.ViewModel;
 
 namespace Warehouse_accounting.View.Components
 {
     /// <summary>
-    /// Логика взаимодействия для EmployeesDataGridElement.xaml
+    /// Логика взаимодействия для CustomButtonCloseModalWindow.xaml
     /// </summary>
-    public partial class EmployeesDataGridElement : UserControl
+    public partial class CustomButtonCloseModalWindow : UserControl
     {
-        public EmployeesDataGridElement()
+        public CustomButtonCloseModalWindow()
         {
             InitializeComponent();
-            var windowService = WindowServiceStorage.Storage;
-            DataContext = new EmployeesDataGridElementViewModel(windowService);
         }
     }
 }

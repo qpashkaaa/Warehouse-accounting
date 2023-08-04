@@ -1,14 +1,14 @@
-﻿<UserControl x:Class="Warehouse_accounting.View.Components.CustomButtonExecute"
+﻿<UserControl x:Class="Warehouse_accounting.View.Components.CustomButtonCloseModalWindow"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
              mc:Ignorable="d" >
-    <Border x:Name="btnStyle" BorderThickness="0"
-            CornerRadius="8,8,8,8" BorderBrush="Black" Background="#6A1039" Height="44" Margin="0 31 0 0" Cursor="Hand">
+    <Border x:Name="btnStyle"
+            CornerRadius="50" Background="#FFFFFF" Width="28" Height="28" Cursor="Hand">
         <Grid>
-            <TextBlock x:Name="btnPlaceholder" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Panel.ZIndex="-1" Foreground="White"/>
+            <Image Source="/Images/ClosingCross.png" Width="20" Height="20" HorizontalAlignment="Center"></Image>
         </Grid>
     </Border>
 </UserControl>

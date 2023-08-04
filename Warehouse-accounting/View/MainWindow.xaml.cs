@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Warehouse_accounting.Model;
+using Warehouse_accounting.Storage;
 using Warehouse_accounting.Tools;
 using Warehouse_accounting.ViewModel;
 
@@ -26,7 +27,7 @@ namespace Warehouse_accounting.View
             InitializeComponent();
             if (System.Windows.Application.Current.Windows.Count != 1)
                 System.Windows.Application.Current.Windows[0].Close();
-            var windowService = new WindowService();
+            var windowService = WindowServiceStorage.Storage;
             DataContext = new MainWindowViewModel() { _windowService = windowService };
         }
     }

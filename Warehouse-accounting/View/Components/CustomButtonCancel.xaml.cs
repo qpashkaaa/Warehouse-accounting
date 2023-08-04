@@ -16,14 +16,15 @@ using System.Windows.Shapes;
 namespace Warehouse_accounting.View.Components
 {
     /// <summary>
-    /// Логика взаимодействия для CustomButtonExecute.xaml
+    /// Логика взаимодействия для CustomButtonCancel.xaml
     /// </summary>
-    public partial class CustomButtonExecute : UserControl
+    public partial class CustomButtonCancel : UserControl
     {
-        public CustomButtonExecute()
+        public CustomButtonCancel()
         {
             InitializeComponent();
         }
+
         private string placeholder;
         public string Placeholder
         {

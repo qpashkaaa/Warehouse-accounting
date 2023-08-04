@@ -30,7 +30,7 @@
             <local:CustomTextBox Placeholder="Логин" 
                                  CustomTextBoxText="{Binding Login}"/>
             <local:CustomPasswordBox Placeholder="Пароль" Password="{Binding Password}"/>
-            <local:CustomButtonExecute Placeholder="Войти">
+            <local:CustomButtonExecute Placeholder="Войти" Width="446">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
                         <i:InvokeCommandAction Command="{Binding bAuthorizationModalWindow_Click}" />

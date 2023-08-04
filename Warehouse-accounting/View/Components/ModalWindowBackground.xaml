@@ -7,7 +7,7 @@
              mc:Ignorable="d">
     <Grid>
         <Border x:Name="WindowBorder" BorderThickness="0" Grid.Row="0" Grid.ColumnSpan="2"
-        CornerRadius="0,0,12,12" BorderBrush="Black" Background="#5D76A0" Opacity="0.5" Width="1440" Height="1000">
+        CornerRadius="0,0,12,12" BorderBrush="Black" Background="#344054" Opacity="0.8" Width="1440" Height="1000">
         </Border>
     </Grid>
 </UserControl>

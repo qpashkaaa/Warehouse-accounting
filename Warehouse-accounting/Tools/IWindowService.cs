@@ -11,5 +11,9 @@ namespace Warehouse_accounting.Tools
         void OpenMainWindow();
 
         void OpenAuthorizationWindow();
+
+        void OpenModalWindowAddNewEmployee();
+
+        void CloseModalWindow();
     }
 }

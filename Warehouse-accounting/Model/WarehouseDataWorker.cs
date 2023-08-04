@@ -26,10 +26,9 @@ namespace Warehouse_accounting.Model
         {
             using (AppDbContext db = new AppDbContext())
             {
-                int rangeStartValue = (activePage * 7) - 6;
-                int rangeEndValue = (activePage * 7);
+                int rangeStartValue = (activePage * 7) - 7;
                 var result = db.Warehouses.
-                    Where(d => d.Id >= rangeStartValue && d.Id <= rangeEndValue).
+                    Skip(rangeStartValue).Take(7).
                     Include(d => d.WarehouseAddress).
                     Include(d => d.WarehouseStatus).
                     ToList();

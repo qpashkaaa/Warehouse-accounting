@@ -9,8 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\AddNewEmployeeModalIcon.png" />
     <None Remove="Images\AuthorizationIcon.png" />
     <None Remove="Images\AvatarAddButton.png" />
+    <None Remove="Images\ClosingCross.png" />
     <None Remove="Images\EmployeesBtnIcon.png" />
     <None Remove="Images\EmployeesBtnIcon_Selected.png" />
     <None Remove="Images\LeftArrow.png" />
@@ -45,6 +47,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\AddNewEmployeeModalIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\ClosingCross.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\LogoIcon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

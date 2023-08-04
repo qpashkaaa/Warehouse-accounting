@@ -20,7 +20,9 @@ namespace Warehouse_accounting.Model
                 return result;
             }
         }
+        #endregion
 
+        #region CHECK_METHOODS
         public static bool CheckAuthorizationDatas(string login, string password)
         {
             using (AppDbContext db = new AppDbContext())

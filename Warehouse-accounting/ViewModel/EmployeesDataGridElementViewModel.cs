@@ -12,6 +12,7 @@ using System.Windows.Input;
 using Warehouse_accounting.Model;
 using Warehouse_accounting.Model.DbModels;
 using Warehouse_accounting.Storage;
+using Warehouse_accounting.Tools;
 using Warehouse_accounting.View.Components;
 
 namespace Warehouse_accounting.ViewModel
@@ -64,12 +65,17 @@ namespace Warehouse_accounting.ViewModel
             get { return _frameOpacity; }
             set { _frameOpacity = value; RaisePropertyChanged(() => FrameOpacity); }
         }
+        private IWindowService _windowService;
+        private void OnOpenModalAddNewEmployeeWindow()
+        {
+            _windowService.OpenModalWindowAddNewEmployee();
+        }
         #endregion
 
         #region CONSTRUCTOR
-        public EmployeesDataGridElementViewModel()
+        public EmployeesDataGridElementViewModel(IWindowService windowService)
         {
-            FrameOpacity = 1;
+            _windowService = windowService;
             EmployeesDataGridElementViewModelStorage.Storage = this;
             ShowEmployeeTable();
         }
@@ -91,6 +97,14 @@ namespace Warehouse_accounting.ViewModel
                 return new RelayCommand(() => ShowEmployeePositionsTable());
             }
         }
+
+        public ICommand bOpenAddModalWindow_Click
+        {
+            get
+            {
+                return new RelayCommand(() => OpenAddModalWindow());
+            }
+        }
         #endregion
 
         #region EMPLOYEES_TABLES_METHOODS
@@ -106,6 +120,18 @@ namespace Warehouse_accounting.ViewModel
             TableName = "Должности";
             CountTableElements = EmployeeDataWorker.GetEmployeePositions().Count;
             new CustomEmployeesPostitionsDataGridViewModel();
+        }
+
+        private void OpenAddModalWindow()
+        {
+            if (TableName == "Сотрудники")
+            {
+                OnOpenModalAddNewEmployeeWindow();
+            }
+            if (TableName == "Должности")
+            {
+                Trace.WriteLine("Добавляем должности");
+            }
         }
         #endregion
     }

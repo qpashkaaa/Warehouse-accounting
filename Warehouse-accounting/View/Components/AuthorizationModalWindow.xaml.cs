@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Warehouse_accounting.Storage;
 using Warehouse_accounting.Tools;
 using Warehouse_accounting.ViewModel;
 
@@ -25,7 +26,7 @@ namespace Warehouse_accounting.View.Components
         public AuthorizationModalWindow()
         {
             InitializeComponent();
-            var windowService = new WindowService();
+            var windowService = WindowServiceStorage.Storage;
             DataContext = new AuthorizationModalWindowViewModel(windowService);
         }
     }
