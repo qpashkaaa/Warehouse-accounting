@@ -44,5 +44,17 @@ namespace Warehouse_accounting.Tools
         {
             modalWindow.Close();
         }
+
+        public void OpenModalWindowRequestResult(string message)
+        {
+            var mainWindow = System.Windows.Application.Current.MainWindow;
+            var window = new ModalWindowRequestResult(message);
+            window.WindowStartupLocation = WindowStartupLocation.Manual;
+            window.Top = mainWindow.Top + 224;
+
+            double left = mainWindow.Left + mainWindow.ActualWidth - window.Width;
+            window.Left = left - 52;
+            window.ShowDialog();
+        }
     }
 }

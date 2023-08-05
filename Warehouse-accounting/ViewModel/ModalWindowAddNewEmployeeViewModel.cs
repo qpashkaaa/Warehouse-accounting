@@ -12,6 +12,7 @@ using Warehouse_accounting.Model;
 using Warehouse_accounting.Model.DbModels;
 using Warehouse_accounting.Storage;
 using Warehouse_accounting.Tools;
+using Warehouse_accounting.View.Components;
 
 namespace Warehouse_accounting.ViewModel
 {
@@ -22,6 +23,11 @@ namespace Warehouse_accounting.ViewModel
         private void OnCloseModalWindow()
         {
             _windowService.CloseModalWindow();
+        }
+
+        private void OnOpenRequestResultModalWindow(string message)
+        {
+            _windowService.OpenModalWindowRequestResult(message);
         }
 
         private bool correctData;
@@ -110,8 +116,20 @@ namespace Warehouse_accounting.ViewModel
             else
             {
                 CorrectData = true;
-                EmployeeDataWorker.AddEmployee(Surname, Name, Patronymic, UniqueNumber, SelectedPosition, SelectedWorkGroup);
-                WindowServiceStorage.Storage.CloseModalWindow();
+
+                // get responce for show result modal window
+                string response = EmployeeDataWorker.AddEmployee(Surname, Name, Patronymic, UniqueNumber, SelectedPosition, SelectedWorkGroup);
+
+                // update data grid Element header (table name, and elements count)
+                EmployeesDataGridElementViewModelStorage.Storage.ShowEmployeeTable();
+
+                // set data grid active last page 
+                new CustomEmployeesDataGridViewModel(0);
+
+                // close modal window
+                OnCloseModalWindow();
+
+                OnOpenRequestResultModalWindow(response);
             }
         }
         #endregion

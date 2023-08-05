@@ -42,12 +42,19 @@ namespace Warehouse_accounting.ViewModel
         #endregion
 
         #region CONSTRUCTOR
-        public CustomEmployeesDataGridViewModel()
+        public CustomEmployeesDataGridViewModel(int _activePage)
         {
             DataGridViewModelStorage.Storage = this;
             List<Employee> employees = EmployeeDataWorker.GetEmployees();
-            ActivePage = 1;
             CountTableElements = employees.Count;
+            if (_activePage == 0)
+            {
+                ActivePage = (int)Math.Ceiling((double)countTableElements / countTableRows);
+            }
+            else
+            {
+                ActivePage = _activePage;
+            }
             DrawTable();
         }
         #endregion
@@ -92,7 +99,7 @@ namespace Warehouse_accounting.ViewModel
             DrawTable();
         }
 
-        private void DrawTable()
+        public void DrawTable()
         {
             List<Employee> employees = EmployeeDataWorker.GetEmployeesRange(ActivePage);
             UserControl dataGrid = new CustomEmployeesDataGrid(employees, CountTableElements, ActivePage);

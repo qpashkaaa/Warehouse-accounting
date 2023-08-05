@@ -30,17 +30,6 @@ namespace Warehouse_accounting.ViewModel
                 RaisePropertyChanged("CountTableElements");
             }
         }
-
-        private int activePage;
-        public int ActivePage
-        {
-            get { return activePage; }
-            set
-            {
-                activePage = value;
-                RaisePropertyChanged("ActivePage");
-            }
-        }
         private string tableName;
         public string TableName
         {
@@ -108,11 +97,11 @@ namespace Warehouse_accounting.ViewModel
         #endregion
 
         #region EMPLOYEES_TABLES_METHOODS
-        private void ShowEmployeeTable()
+        public void ShowEmployeeTable()
         {
             TableName = "Сотрудники";
             CountTableElements = EmployeeDataWorker.GetEmployees().Count;
-            new CustomEmployeesDataGridViewModel();
+            new CustomEmployeesDataGridViewModel(1);
         }
 
         private void ShowEmployeePositionsTable()
