@@ -59,6 +59,11 @@ namespace Warehouse_accounting.ViewModel
         {
             _windowService.OpenModalWindowAddNewEmployee();
         }
+
+        private void OnOpenModalAddNewEmployeePositionWindow()
+        {
+            _windowService.OpenModalWindowAddNewEmployeePosition();
+        }
         #endregion
 
         #region CONSTRUCTOR
@@ -104,11 +109,11 @@ namespace Warehouse_accounting.ViewModel
             new CustomEmployeesDataGridViewModel(1);
         }
 
-        private void ShowEmployeePositionsTable()
+        public void ShowEmployeePositionsTable()
         {
             TableName = "Должности";
             CountTableElements = EmployeeDataWorker.GetEmployeePositions().Count;
-            new CustomEmployeesPostitionsDataGridViewModel();
+            new CustomEmployeesPostitionsDataGridViewModel(1);
         }
 
         private void OpenAddModalWindow()
@@ -119,7 +124,7 @@ namespace Warehouse_accounting.ViewModel
             }
             if (TableName == "Должности")
             {
-                Trace.WriteLine("Добавляем должности");
+                OnOpenModalAddNewEmployeePositionWindow();
             }
         }
         #endregion

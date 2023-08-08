@@ -12,7 +12,8 @@
         WindowStyle="None"
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
-        Icon="/Images/LogoIcon.png" x:Name="MainWindowName">
+        Icon="/Images/LogoIcon.png" x:Name="MainWindowName"
+        AllowsTransparency="True">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>

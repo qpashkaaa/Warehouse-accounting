@@ -43,11 +43,19 @@ namespace Warehouse_accounting.ViewModel
         #endregion
 
         #region CONSTRUCTOR
-        public CustomEmployeesPostitionsDataGridViewModel()
+        public CustomEmployeesPostitionsDataGridViewModel(int _activePage)
         {
             DataGridViewModelStorage.Storage = this;
             ActivePage = 1;
             CountTableElements = EmployeeDataWorker.GetEmployeePositions().Count;
+            if (_activePage == 0)
+            {
+                ActivePage = (int)Math.Ceiling((double)CountTableElements / countTableRows);
+            }
+            else
+            {
+                ActivePage = _activePage;
+            }
             DrawTable();
         }
         #endregion

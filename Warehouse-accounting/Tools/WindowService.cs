@@ -40,6 +40,13 @@ namespace Warehouse_accounting.Tools
             OpenModalWindowMethood(window);
         }
 
+        public void OpenModalWindowAddNewEmployeePosition()
+        {
+            var window = new ModalWindowAddNewPosition();
+            modalWindow = window;
+            OpenModalWindowMethood(window);
+        }
+
         public void CloseModalWindow()
         {
             modalWindow.Close();

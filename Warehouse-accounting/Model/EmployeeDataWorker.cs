@@ -88,10 +88,9 @@ namespace Warehouse_accounting.Model
         {
             using (AppDbContext db = new AppDbContext())
             {
-                int rangeStartValue = (activePage * 7) - 6;
-                int rangeEndValue = (activePage * 7);
+                int rangeStartValue = (activePage * 7) - 7;
                 var result = db.EmployeePositions.
-                    Where(d => d.Id >= rangeStartValue && d.Id <= rangeEndValue).
+                    Skip(rangeStartValue).Take(7).
                     ToList();
                 return result;
             }
@@ -150,10 +149,26 @@ namespace Warehouse_accounting.Model
                 {
                     Position = position
                 };
+
+                // add object
                 db.EmployeePositions.Add(newEmployeePosition);
-                db.SaveChanges();
+                try
+                {
+                    int requestResult = db.SaveChanges();
+                    if (requestResult == 1)
+                    {
+                        return "Данные добавлены";
+                    }
+                    else
+                    {
+                        return "Ошибка добавления";
+                    }
+                }
+                catch
+                {
+                    return "Ошибка добавления";
+                }
             }
-            return "Данные добавлены";
         }
         #endregion
 
