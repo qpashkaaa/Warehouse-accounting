@@ -31,6 +31,7 @@ namespace Warehouse_accounting.Model
             {
                 int rangeStartValue = (activePage * 7) - 7;
                 var result = db.Employees.
+                    OrderBy(d=> d.EmployeeStatusId).
                     Skip(rangeStartValue).Take(7).
                     Include(d => d.EmployeePosition).
                     Include(d => d.WorkGroup).

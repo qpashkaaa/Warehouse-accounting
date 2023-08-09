@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Automation.Peers;
 using System.Xml.Linq;
 using Warehouse_accounting.Data;
 using Warehouse_accounting.Model.DbModels;
@@ -28,6 +30,7 @@ namespace Warehouse_accounting.Model
             {
                 int rangeStartValue = (activePage * 7) - 7;
                 var result = db.Warehouses.
+                    OrderBy(d => d.WarehouseStatus).
                     Skip(rangeStartValue).Take(7).
                     Include(d => d.WarehouseAddress).
                     Include(d => d.WarehouseStatus).
@@ -52,10 +55,66 @@ namespace Warehouse_accounting.Model
                 return result;
             }
         }
+
+        public static List<string> GetWarehouseAddressesText()
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                var result = db.WarehouseAddresses.Select(d => $"{d.City}, {d.Street}, {d.HouseNumber}").ToList();
+                return result;
+            }
+        }
         #endregion
 
         #region ADD_METHOODS
         // add warehouse
+        public static string AddWarehouse(string name, string uniqueNumber, string address)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                // Take objects from string
+                Trace.WriteLine(address);
+                List<string> splitAddress = address.Split(", ").ToList();
+                WarehouseAddress selectedAddress = new WarehouseAddress 
+                {
+                    City = splitAddress[0],
+                    Street = splitAddress[1],
+                    HouseNumber = splitAddress[2]
+                };
+
+                int warehouseAddressId = db.WarehouseAddresses.
+                    Where(d => d.City == selectedAddress.City && d.Street == selectedAddress.Street && d.HouseNumber == selectedAddress.HouseNumber).
+                    FirstOrDefault().Id;
+
+                // create new object
+                 Warehouse newWarehouse = new Warehouse()
+                 {
+                     Name = name,
+                     UniqueNumber = uniqueNumber,
+                     WarehouseAddressId = warehouseAddressId,
+                     WarehouseStatusId = 2,
+                 };
+
+                 // add object
+                 db.Warehouses.Add(newWarehouse);
+                 try
+                 {
+                     int requestResult = db.SaveChanges();
+                     if (requestResult == 1)
+                     {
+                         return "Данные добавлены";
+                     }
+                     else
+                     {
+                         return "Ошибка добавления";
+                     }
+                 }
+                 catch
+                 {
+                     return "Ошибка добавления";
+                 }
+            }
+        }
         public static string AddWarehouse(string name, string uniqueNumber)
         {
             using (AppDbContext db = new AppDbContext())

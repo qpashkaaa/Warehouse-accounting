@@ -1,0 +1,77 @@
+﻿<Window x:Class="Warehouse_accounting.View.ModalWindowAddNewWarehouse"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Warehouse_accounting.View"
+        mc:Ignorable="d"
+        xmlns:myControls ="clr-namespace:Warehouse_accounting.View.Components"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        Title="Добавить склад" Height="968" Width="1440" 
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        Icon="/Images/LogoIcon.png"
+        AllowsTransparency="True"
+        ShowInTaskbar="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="170"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="457"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="457"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <myControls:ModalWindowBackground Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3"></myControls:ModalWindowBackground>
+        <myControls:CustomButtonCloseModalWindow Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15 0 0 15">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <i:InvokeCommandAction Command="{Binding bCloseModalWindow_Click}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </myControls:CustomButtonCloseModalWindow>
+        <Border Grid.Row="1" Grid.Column="1" x:Name="WindowBorder" BorderThickness="0"
+        CornerRadius="12,12,12,12" BorderBrush="Black" Background="#FFFFFF" Width="526" Height="479" VerticalAlignment="Top">
+        </Border>
+        <StackPanel Grid.Row="1" Grid.Column="1" Width="526" Height="479" VerticalAlignment="Top">
+            <Image Source="/Images/AddNewWarehouseModalIcon.png" Width="48" HorizontalAlignment="Left" Margin="40 40 0 0"></Image>
+            <TextBlock FontSize="21" Margin="40 31 0 0" FontWeight="Bold">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Text" Value="Добавить новый склад" />
+                        <Setter Property="Foreground" Value="#15294B"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CorrectData, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                                <Setter Property="Text" Value="Заполните все поля" />
+                                <Setter Property="Foreground" Value="#6A1039"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <myControls:CustomTextBox Placeholder="Наименование" 
+                                 CustomTextBoxText="{Binding Name}"/>
+            <myControls:CustomTextBoxReadOnly 
+                                 CustomTextBoxText="{Binding UniqueNumber}"/>
+            <myControls:CustomComboBox Placeholder="Адрес" ComboBoxItems="{Binding AddressesText}" ComboBoxSelectedItem="{Binding SelectedAddress}"/>
+            <DockPanel>
+                <myControls:CustomButtonCancel Placeholder="Отмена" Width="217" Margin="40 0 0 0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDown">
+                            <i:InvokeCommandAction Command="{Binding bCloseModalWindow_Click}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </myControls:CustomButtonCancel>
+                <myControls:CustomButtonExecute Placeholder="Добавить склад" Width="217" Margin="12 0 40 0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDown">
+                            <i:InvokeCommandAction Command="{Binding bAddNewWarehouse_Click}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </myControls:CustomButtonExecute>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Window>

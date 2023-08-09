@@ -10,23 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Warehouse_accounting.Storage;
 using Warehouse_accounting.ViewModel;
 
-namespace Warehouse_accounting.View.Components
+namespace Warehouse_accounting.View
 {
     /// <summary>
-    /// Логика взаимодействия для WarehousesDataGridElement.xaml
+    /// Логика взаимодействия для ModalWindowAddNewWarehouse.xaml
     /// </summary>
-    public partial class WarehousesDataGridElement : UserControl
+    public partial class ModalWindowAddNewWarehouse : Window
     {
-        public WarehousesDataGridElement()
+        public ModalWindowAddNewWarehouse()
         {
             InitializeComponent();
             var windowService = WindowServiceStorage.Storage;
-            DataContext = new WarehousesDataGridElementViewModel(windowService);
+            DataContext = new ModalWindowAddNewWarehouseViewModel(windowService);
         }
     }
 }

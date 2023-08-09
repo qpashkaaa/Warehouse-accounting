@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Images\AddNewEmployeeModalIcon.png" />
+    <None Remove="Images\AddNewWarehouseModalIcon.png" />
     <None Remove="Images\AuthorizationIcon.png" />
     <None Remove="Images\AvatarAddButton.png" />
     <None Remove="Images\ClosingCross.png" />
@@ -48,6 +49,9 @@
 
   <ItemGroup>
     <Resource Include="Images\AddNewEmployeeModalIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\AddNewWarehouseModalIcon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\ClosingCross.png">

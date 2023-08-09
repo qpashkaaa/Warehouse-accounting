@@ -47,6 +47,13 @@ namespace Warehouse_accounting.Tools
             OpenModalWindowMethood(window);
         }
 
+        public void OpenModalWindowAddNewWarehouse()
+        {
+            var window = new ModalWindowAddNewWarehouse();
+            modalWindow = window;
+            OpenModalWindowMethood(window);
+        }
+
         public void CloseModalWindow()
         {
             modalWindow.Close();
@@ -61,7 +68,7 @@ namespace Warehouse_accounting.Tools
 
             double left = mainWindow.Left + mainWindow.ActualWidth - window.Width;
             window.Left = left - 52;
-            window.ShowDialog();
+            window.Show();
         }
     }
 }

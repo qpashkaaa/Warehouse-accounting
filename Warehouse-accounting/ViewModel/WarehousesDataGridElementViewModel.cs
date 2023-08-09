@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Warehouse_accounting.Model;
 using Warehouse_accounting.Storage;
+using Warehouse_accounting.Tools;
 using Warehouse_accounting.View.Components;
 
 namespace Warehouse_accounting.ViewModel
@@ -60,23 +62,46 @@ namespace Warehouse_accounting.ViewModel
             get { return _frameOpacity; }
             set { _frameOpacity = value; RaisePropertyChanged(() => FrameOpacity); }
         }
+        private IWindowService _windowService;
+        private void OnOpenModalAddNewWarehouseWindow()
+        {
+            _windowService.OpenModalWindowAddNewWarehouse();
+        }
         #endregion
 
         #region CONSTRUCTOR
-        public WarehousesDataGridElementViewModel()
+        public WarehousesDataGridElementViewModel(IWindowService windowService)
         {
-            FrameOpacity = 1;
+            _windowService = windowService;
             WarehousesDataGridElementViewModelStorage.Storage = this;
             ShowWarehouseTable();
         }
         #endregion
 
+        #region BUTTON_COMMANDS
+        public ICommand bOpenAddModalWindow_Click
+        {
+            get
+            {
+                return new RelayCommand(() => OpenAddModalWindow());
+            }
+        }
+        #endregion
+
         #region WAREHOUSES_TABLES_METHOODS
-        private void ShowWarehouseTable()
+        public void ShowWarehouseTable()
         {
             TableName = "Склады";
             CountTableElements = WarehouseDataWorker.GetWarehouses().Count;
-            new CustomWarehousesDataGridViewModel();
+            new CustomWarehousesDataGridViewModel(1);
+        }
+
+        private void OpenAddModalWindow()
+        {
+            if (TableName == "Склады")
+            {
+                OnOpenModalAddNewWarehouseWindow();
+            }
         }
         #endregion
     }

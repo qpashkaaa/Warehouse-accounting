@@ -42,11 +42,19 @@ namespace Warehouse_accounting.ViewModel
         #endregion
 
         #region CONSTRUCTOR
-        public CustomWarehousesDataGridViewModel()
+        public CustomWarehousesDataGridViewModel(int _activePage)
         {
             DataGridViewModelStorage.Storage = this;
             ActivePage = 1;
             CountTableElements = WarehouseDataWorker.GetWarehouses().Count;
+            if (_activePage == 0)
+            {
+                ActivePage = (int)Math.Ceiling((double)CountTableElements / countTableRows);
+            }
+            else
+            {
+                ActivePage = _activePage;
+            }
             DrawTable();
         }
         #endregion
