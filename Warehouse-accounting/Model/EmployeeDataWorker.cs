@@ -175,25 +175,55 @@ namespace Warehouse_accounting.Model
 
         #region DELETE_METHOODS
         // delete employee
-        public static string DeleteEmployee(Employee employee)
+        public static string DeleteEmployee(int id)
         {
             using (AppDbContext db = new AppDbContext())
             {
+                Employee employee = db.Employees.FirstOrDefault(d => d.Id == id);
                 db.Employees.Remove(employee);
-                db.SaveChanges();
+                try
+                {
+                    int requestResult = db.SaveChanges();
+                    if (requestResult == 1)
+                    {
+                        return "Данные удалены";
+                    }
+                    else
+                    {
+                        return "Ошибка удаления";
+                    }
+                }
+                catch
+                {
+                    return "Ошибка удаления";
+                }
             }
-            return "Данные удалены";
         }
 
         // delete position
-        public static string DeletePosition(EmployeePosition employeePosition)
+        public static string DeletePosition(int id)
         {
             using (AppDbContext db = new AppDbContext())
             {
+                EmployeePosition employeePosition = db.EmployeePositions.FirstOrDefault(d => d.Id == id);
                 db.EmployeePositions.Remove(employeePosition);
-                db.SaveChanges();
+                try
+                {
+                    int requestResult = db.SaveChanges();
+                    if (requestResult == 1)
+                    {
+                        return "Данные удалены";
+                    }
+                    else
+                    {
+                        return "Ошибка удаления";
+                    }
+                }
+                catch
+                {
+                    return "Ошибка удаления";
+                }
             }
-            return "Данные удалены";
         }
         #endregion
 

@@ -1,0 +1,80 @@
+﻿<Window x:Class="Warehouse_accounting.View.ModalWindowEditDataGridRow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Warehouse_accounting.View"
+        mc:Ignorable="d"
+        xmlns:myControls ="clr-namespace:Warehouse_accounting.View.Components"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        Height="44" Width="115" 
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        Icon="/Images/LogoIcon.png"
+        AllowsTransparency="True"
+        ShowInTaskbar="False"
+        ShowActivated="False" MouseEnter="Window_MouseEnter" MouseLeave="Window_MouseLeave">
+    <Grid>
+        <Border x:Name="btn_1" BorderThickness="1,1,1,0"
+            CornerRadius="8,8,0,0" BorderBrush="#EFF1F4" Width="115" Height="22" VerticalAlignment="Top">
+            <TextBlock Text="Изменить" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="#42526D"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=btn_1}" Value="True">
+                                <Setter Property="Foreground" Value="#F7E8EF"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Background" Value="#FFFFFF"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsMouseOver, ElementName=btn_1}" Value="True">
+                            <Setter Property="Background" Value="#9A4C1E"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <i:InvokeCommandAction Command="{Binding bUpdateModalWindow_Click}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Border>
+        <Border x:Name="btn_2" BorderThickness="1,0,1,1"
+            CornerRadius="0,0,8,8" BorderBrush="#EFF1F4" Width="115" Height="22" VerticalAlignment="Bottom">
+            <TextBlock Text="Удалить" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="#42526D"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=btn_2}" Value="True">
+                                <Setter Property="Foreground" Value="#F7E8EF"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Background" Value="#FFFFFF"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsMouseOver, ElementName=btn_2}" Value="True">
+                            <Setter Property="Background" Value="#9A4C1E"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <i:InvokeCommandAction Command="{Binding bDeleteModalWindow_Click}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Border>
+    </Grid>
+</Window>

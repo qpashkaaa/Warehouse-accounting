@@ -12,6 +12,7 @@ namespace Warehouse_accounting.Tools
     public class WindowService : IWindowService
     {
         private Window modalWindow;
+        public Window mainWindow;
         private void OpenModalWindowMethood(Window window)
         {
             var mainWindow = System.Windows.Application.Current.MainWindow;
@@ -24,6 +25,7 @@ namespace Warehouse_accounting.Tools
         public void OpenMainWindow()
         {
             var window = new MainWindow();
+            mainWindow = window;
             window.Show();
         }
 

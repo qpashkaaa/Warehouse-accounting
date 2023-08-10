@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Warehouse_accounting.Model;
 using Warehouse_accounting.Model.DbModels;
+using Warehouse_accounting.Storage;
 using Warehouse_accounting.ViewModel;
 
 namespace Warehouse_accounting.View.Components
@@ -28,7 +29,11 @@ namespace Warehouse_accounting.View.Components
         public CustomEmployeesDataGrid(List<Employee> dataGridList, int countTableElements, int activePage)
         {
             InitializeComponent();
-            double countPages = Math.Ceiling((double)countTableElements / countRows);
+            double countPages = 1;
+            if (countTableElements != 0)
+            {
+                countPages = Math.Ceiling((double)countTableElements / countRows);
+            }
             this.Footer.CountPages = Convert.ToInt32(countPages);
             this.Footer.ActivePage = activePage;
             AddData(dataGridList);
@@ -68,6 +73,8 @@ namespace Warehouse_accounting.View.Components
                     Grid.SetColumn(statusElem, 3);
                     Grid.SetRow(statusElem, i);
 
+                    editElem.IdElem = listElem.Id;
+                    editElem.OpenTable = TablesIdStorage.EMPLOYEES_TABLE;
                     grid.Children.Add(editElem);
                     Grid.SetColumn(editElem, 4);
                     Grid.SetRow(editElem, i);

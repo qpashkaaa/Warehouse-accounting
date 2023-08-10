@@ -27,7 +27,11 @@ namespace Warehouse_accounting.View.Components
         public CustomEmployeesPostitionsDataGrid(List<EmployeePosition> dataGridList, int countTableElements, int activePage)
         {
             InitializeComponent();
-            double countPages = Math.Ceiling((double)countTableElements / countRows);
+            double countPages = 1;
+            if (countTableElements != 0)
+            {
+                countPages = Math.Ceiling((double)countTableElements / countRows);
+            }
             this.Footer.CountPages = Convert.ToInt32(countPages);
             this.Footer.ActivePage = activePage;
             AddData(dataGridList);
@@ -46,6 +50,8 @@ namespace Warehouse_accounting.View.Components
                     Grid.SetColumn(mainInfo, 0);
                     Grid.SetRow(mainInfo, i);
 
+                    editElem.IdElem = dataGridList[i - 1].Id;
+                    editElem.OpenTable = TablesIdStorage.EMPLOYEES_POSITIONS_TABLE;
                     grid.Children.Add(editElem);
                     Grid.SetColumn(editElem, 1);
                     Grid.SetRow(editElem, i);

@@ -181,14 +181,29 @@ namespace Warehouse_accounting.Model
 
         #region DELETE_METHOODS
         // delete warehouse
-        public static string DeleteWarehouse(Warehouse warehouse)
+        public static string DeleteWarehouse(int id)
         {
             using (AppDbContext db = new AppDbContext())
             {
+                Warehouse warehouse = db.Warehouses.FirstOrDefault(d => d.Id == id);
                 db.Warehouses.Remove(warehouse);
-                db.SaveChanges();
+                try
+                {
+                    int requestResult = db.SaveChanges();
+                    if (requestResult == 1)
+                    {
+                        return "Данные удалены";
+                    }
+                    else
+                    {
+                        return "Ошибка удаления";
+                    }
+                }
+                catch
+                {
+                    return "Ошибка удаления";
+                }
             }
-            return "Данные удалены";
         }
 
         // delete warehouse address
