@@ -50,7 +50,7 @@
                         <RotateTransform></RotateTransform>
                     </Image.RenderTransform>
                 </Image>
-                <TextBlock x:Name="cbPlaceholder" Opacity="1" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="55 0 0 0" Panel.ZIndex="1" Foreground="#5D76A0" Loaded="cbPlaceholder_Loaded"/>
+                <TextBlock x:Name="cbPlaceholder" Opacity="1" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="55 0 0 0" Panel.ZIndex="1" Foreground="#5D76A0" Initialized="cbPlaceholder_Initialized"/>
                 <Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="8,8,8,8"
   Background="{StaticResource NormalBrush}"
   BorderThickness="1">

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Warehouse_accounting.Model;
+using Warehouse_accounting.Model.DbModels;
 using Warehouse_accounting.Storage;
 using Warehouse_accounting.Tools;
 using Warehouse_accounting.View.Components;
@@ -24,6 +25,21 @@ namespace Warehouse_accounting.ViewModel
         {
             _windowService.OpenModalWindowRequestResult(message);
         }
+
+        private void OnOpenModalWindowEditEmployee(Employee employee)
+        {
+            _windowService.OpenModalWindowEditEmployee(employee);
+        }
+        private void OnOpenModalWindowEditEmployeePosition(EmployeePosition employeePosition)
+        {
+            _windowService.OpenModalWindowEditEmployeePosition(employeePosition);
+        }
+
+        private void OnOpenModalWindowEditWarehouse(Warehouse warehouse)
+        {
+            _windowService.OpenModalWindowEditWarehouse(warehouse);
+        }
+
         #endregion
 
         #region CONSTRUCTOR
@@ -82,15 +98,19 @@ namespace Warehouse_accounting.ViewModel
         {
             if (OpenTable == TablesIdStorage.EMPLOYEES_TABLE)
             {
-                Trace.WriteLine($"Обновляем {IdElem} в таблице сотрудники");
+                // get needed entity
+                Employee employee = EmployeeDataWorker.GetEmployeeById(IdElem);
+                OnOpenModalWindowEditEmployee(employee);
             }
             if (OpenTable == TablesIdStorage.EMPLOYEES_POSITIONS_TABLE)
             {
-                Trace.WriteLine($"Обновляем {IdElem} в таблице должности");
+                EmployeePosition employeePosition = EmployeeDataWorker.GetEmployeePositionById(IdElem);
+                OnOpenModalWindowEditEmployeePosition(employeePosition);
             }
             if (OpenTable == TablesIdStorage.WAREHOUSES_TABLE)
             {
-                Trace.WriteLine($"Обновляем {IdElem} в таблице склады");
+                Warehouse warehouse = WarehouseDataWorker.GetWarehouseById(IdElem);
+                OnOpenModalWindowEditWarehouse(warehouse);
             }
         }
         #endregion

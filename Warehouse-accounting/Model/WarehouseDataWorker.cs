@@ -24,6 +24,15 @@ namespace Warehouse_accounting.Model
             }
         }
 
+        public static Warehouse GetWarehouseById(int id)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                Warehouse result = db.Warehouses.FirstOrDefault(d => d.Id == id);
+                return result;
+            }
+        }
+
         public static List<Warehouse> GetWarehousesRange(int activePage)
         {
             using (AppDbContext db = new AppDbContext())
@@ -64,6 +73,32 @@ namespace Warehouse_accounting.Model
                 return result;
             }
         }
+
+        public static string GetWarehouseAddressTextById(int warehouseAddressId)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                WarehouseAddress address = db.WarehouseAddresses.FirstOrDefault(d => d.Id == warehouseAddressId);
+                string result = $"{address.City}, {address.Street}, {address.HouseNumber}";
+                return result;
+            }
+        }
+
+        public static WarehouseAddress GetWarehouseAddressByText(string address)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                List<string> splitAddress = address.Split(", ").ToList();
+                WarehouseAddress selectedAddress = new WarehouseAddress
+                {
+                    City = splitAddress[0],
+                    Street = splitAddress[1],
+                    HouseNumber = splitAddress[2]
+                };
+                var result = db.WarehouseAddresses.FirstOrDefault(d => d.City == selectedAddress.City && d.Street == selectedAddress.Street && d.HouseNumber == selectedAddress.HouseNumber);
+                return result;
+            }
+        }
         #endregion
 
         #region ADD_METHOODS
@@ -73,7 +108,6 @@ namespace Warehouse_accounting.Model
             using (AppDbContext db = new AppDbContext())
             {
                 // Take objects from string
-                Trace.WriteLine(address);
                 List<string> splitAddress = address.Split(", ").ToList();
                 WarehouseAddress selectedAddress = new WarehouseAddress 
                 {
@@ -241,16 +275,18 @@ namespace Warehouse_accounting.Model
         #endregion
 
         #region EDIT_METHOODS
-        public static string EditWarehouse(Warehouse oldWarehouse, string newName, string newUniqueNumber)
+        public static string EditWarehouse(Warehouse newWarehouse)
         {
             using (AppDbContext db = new AppDbContext())
             {
-                Warehouse warehouse = db.Warehouses.FirstOrDefault(w => w.Id == oldWarehouse.Id);
-                warehouse.Name = newName;
-                warehouse.UniqueNumber = newUniqueNumber;
+                Warehouse oldWarehouse = db.Warehouses.FirstOrDefault(d => d.Id == newWarehouse.Id);
+
+                oldWarehouse.Name = newWarehouse.Name;
+                oldWarehouse.UniqueNumber = newWarehouse.UniqueNumber;
+                oldWarehouse.WarehouseAddress = newWarehouse.WarehouseAddress;
                 db.SaveChanges();
             }
-            return "Данные обновлены";
+            return "Данные изменены";
         }
 
         public static string EditWarehouseAddress(WarehouseAddress oldWarehouseAddress, string newCity, string newStreet, string newHouseNumber)

@@ -6,18 +6,16 @@ using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Warehouse_accounting.Model;
 using Warehouse_accounting.Model.DbModels;
 using Warehouse_accounting.Storage;
 using Warehouse_accounting.Tools;
-using Warehouse_accounting.View.Components;
 
 namespace Warehouse_accounting.ViewModel
 {
-    public class ModalWindowAddNewEmployeeViewModel : ViewModelBase
+    public class ModalWindowEditEmployeeViewModel : ViewModelBase
     {
         #region VARIABLES
         private IWindowService _windowService;
@@ -41,6 +39,8 @@ namespace Warehouse_accounting.ViewModel
                 RaisePropertyChanged("CorrectData");
             }
         }
+
+        private int Id { get; set; } = 0;
         public string Name { get; set; } = "";
         public string Surname { get; set; } = "";
         public string Patronymic { get; set; } = "";
@@ -53,13 +53,23 @@ namespace Warehouse_accounting.ViewModel
         #endregion
 
         #region CONSTRUCTOR
-        public ModalWindowAddNewEmployeeViewModel(IWindowService windowService)
+        public ModalWindowEditEmployeeViewModel(IWindowService windowService, Employee employee)
         {
             _windowService = windowService;
             CorrectData = true;
+
+            // set data to textbox's and combobox's
+            Id = employee.Id;
+            Name = employee.Name;
+            Surname = employee.Surname;
+            Patronymic = employee.Patronymic;
+            UniqueNumber = employee.UniqueNumber;
+            SelectedPosition = EmployeeDataWorker.GetEmployeePositionTextById(employee.EmployeePositionId);
+            SelectedWorkGroup = EmployeeDataWorker.GetEmployeeWorkGroupTextById(employee.WorkGroupId);
+
+            // comboBox Items
             PositionsText = EmployeeDataWorker.GetEmployeePositionsText();
             WorkGroupsText = EmployeeDataWorker.GetEmployeeWorkGroupsText();
-            UniqueNumber = CreateUniqueId();
         }
         #endregion
 
@@ -71,44 +81,18 @@ namespace Warehouse_accounting.ViewModel
                 return new RelayCommand(() => OnCloseModalWindow());
             }
         }
-        public ICommand bAddNewEmployee_Click
+        public ICommand bEditEmployee_Click
         {
             get
             {
-                return new RelayCommand(() => AddNewEmployeeInDatabase());
+                return new RelayCommand(() => EditEmployeeInDatabase());
             }
         }
         #endregion
 
         #region METHOODS
-        private string CreateUniqueId()
-        {
-            // creating variables
-            Guid guidValue;
-            MD5 md5;
-            Guid hashed;
-            string uniqueID;
 
-            // first unique number generation
-            guidValue = Guid.NewGuid();
-            md5 = MD5.Create();
-            hashed = new Guid(md5.ComputeHash(guidValue.ToByteArray()));
-            uniqueID = "#" + hashed.ToString().Replace("-", "").Substring(0, 15).ToUpper();
-
-            //check repeat's numbers
-            while (EmployeeDataWorker.CheckEmployeeUniqueNumber(uniqueID) == true)
-            {
-                guidValue = Guid.NewGuid();
-                md5 = MD5.Create();
-                hashed = new Guid(md5.ComputeHash(guidValue.ToByteArray()));
-                uniqueID = "#" + hashed.ToString().Replace("-", "").Substring(0, 15).ToUpper();
-            }
-
-            // if repeat's number not founded, return unique number
-            return uniqueID;
-        }
-
-        private void AddNewEmployeeInDatabase()
+        private void EditEmployeeInDatabase()
         {
             if (Name == "" || Surname == "" || Patronymic == "" || UniqueNumber == "" || SelectedPosition == "" || SelectedWorkGroup == "")
             {
@@ -119,12 +103,20 @@ namespace Warehouse_accounting.ViewModel
                 CorrectData = true;
 
                 // get responce for show result modal window
-                string response = EmployeeDataWorker.AddEmployee(Surname, Name, Patronymic, UniqueNumber, SelectedPosition, SelectedWorkGroup);
+                Employee newEmployee = new Employee()
+                {
+                    Id = Id,
+                    Name = Name,
+                    Surname = Surname,
+                    Patronymic = Patronymic,
+                    UniqueNumber = UniqueNumber,
+                    EmployeePosition = EmployeeDataWorker.GetEmployeePositionByText(SelectedPosition),
+                    WorkGroup = EmployeeDataWorker.GetEmployeeWorkGroupByText(SelectedWorkGroup),
+                };
 
-                // update data grid Element header (table name, and elements count)
-                EmployeesDataGridElementViewModelStorage.Storage.ShowEmployeeTable();
+                string response = EmployeeDataWorker.EditEmployee(newEmployee);
 
-                // set data grid active last page 
+                // set data grid active on the last page
                 new CustomEmployeesDataGridViewModel(0);
 
                 // close modal window

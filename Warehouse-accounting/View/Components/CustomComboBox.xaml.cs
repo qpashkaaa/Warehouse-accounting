@@ -81,7 +81,7 @@ namespace Warehouse_accounting.View.Components
             cbPlaceholder.Visibility = Visibility.Collapsed;
         }
 
-        private void cbPlaceholder_Loaded(object sender, RoutedEventArgs e)
+        private void cbPlaceholder_Initialized(object sender, EventArgs e)
         {
             cbPlaceholder = sender as TextBlock;
             cbPlaceholder.Text = cbPlaceholderText;

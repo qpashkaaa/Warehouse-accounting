@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,11 +20,13 @@ namespace Warehouse_accounting.View
     /// </summary>
     public partial class ModalWindowRequestResult : Window
     {
-        public ModalWindowRequestResult(string message)
+        private Window mainWindow;
+        public ModalWindowRequestResult(string message, Window _mainWindow)
         {
             InitializeComponent();
             progress.Width = 0;
             Placeholder = message;
+            mainWindow = _mainWindow;
         }
 
         private string placeholder;
@@ -76,7 +79,10 @@ namespace Warehouse_accounting.View
                 if (match == 1)
                 {
                     timer.Stop();
+                    mainWindow.Topmost = true;
                     this.Close();
+                    Thread.Sleep(10);
+                    mainWindow.Topmost = false;
                 }
             };
             timer.Start();

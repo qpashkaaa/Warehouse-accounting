@@ -25,6 +25,15 @@ namespace Warehouse_accounting.Model
             }
         }
 
+        public static Employee GetEmployeeById(int id)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                Employee result = db.Employees.FirstOrDefault(d => d.Id == id);
+                return result;
+            }
+        }
+
         public static List<Employee> GetEmployeesRange(int activePage)
         {
             using (AppDbContext db = new AppDbContext())
@@ -59,6 +68,24 @@ namespace Warehouse_accounting.Model
             }
         }
 
+        public static string GetEmployeeWorkGroupTextById(int workGroupId)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                var result = db.WorkGroups.FirstOrDefault(d => d.Id == workGroupId).Group.ToString();
+                return result;
+            }
+        }
+
+        public static WorkGroup GetEmployeeWorkGroupByText(string workGroupText)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                var result = db.WorkGroups.FirstOrDefault(d => d.Group == workGroupText);
+                return result;
+            }
+        }
+
         public static List<EmployeeStatus> GetEmployeeStatuses()
         {
             using (AppDbContext db = new AppDbContext())
@@ -72,6 +99,33 @@ namespace Warehouse_accounting.Model
             using (AppDbContext db = new AppDbContext())
             {
                 var result = db.EmployeePositions.ToList();
+                return result;
+            }
+        }
+
+        public static EmployeePosition GetEmployeePositionById(int id)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                EmployeePosition result = db.EmployeePositions.FirstOrDefault(d => d.Id == id);
+                return result;
+            }
+        }
+
+        public static string GetEmployeePositionTextById(int positionId)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                var result = db.EmployeePositions.FirstOrDefault(d=> d.Id == positionId).Position.ToString();
+                return result;
+            }
+        }
+
+        public static EmployeePosition GetEmployeePositionByText(string positionText)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                var result = db.EmployeePositions.FirstOrDefault(d => d.Position == positionText);
                 return result;
             }
         }
@@ -228,32 +282,33 @@ namespace Warehouse_accounting.Model
         #endregion
 
         #region EDIT_METHOODS
-        public static string EditEmployee(Employee oldEmployee, string newSurname, string newName, string newPatronymic, string newUniqueNumber, EmployeePosition newEmployeePosition, WorkGroup newWorkGroup, EmployeeStatus newEmployeeStatus)
+        public static string EditEmployee(Employee newEmployee)
         {
             using (AppDbContext db = new AppDbContext())
             {
-                Employee employee = db.Employees.FirstOrDefault(e => e.Id == oldEmployee.Id);
-                employee.Surname = newSurname;
-                employee.Name = newName;
-                employee.Patronymic = newPatronymic;
-                employee.UniqueNumber = newUniqueNumber;
-                employee.EmployeePosition = newEmployeePosition;
-                employee.WorkGroup = newWorkGroup;
-                employee.EmployeeStatus = newEmployeeStatus;
+                Employee employee = db.Employees.FirstOrDefault(d => d.Id == newEmployee.Id);
+
+                employee.Surname = newEmployee.Surname;
+                employee.Name = newEmployee.Name;
+                employee.Patronymic = newEmployee.Patronymic;
+                employee.UniqueNumber = newEmployee.UniqueNumber;
+                employee.EmployeePosition = newEmployee.EmployeePosition;
+                employee.WorkGroup = newEmployee.WorkGroup;
                 db.SaveChanges();
             }
-            return "Данные обновлены";
+            return "Данные изменены";
         }
 
-        public static string EditPosition(EmployeePosition oldEmployeePosition, string newPosition)
+        public static string EditEmployeePosition(EmployeePosition newEmployeePosition)
         {
             using (AppDbContext db = new AppDbContext())
             {
-                EmployeePosition employeePosition = db.EmployeePositions.FirstOrDefault(p => p.Id == oldEmployeePosition.Id);
-                employeePosition.Position = newPosition;
+                EmployeePosition employeePosition = db.EmployeePositions.FirstOrDefault(d => d.Id == newEmployeePosition.Id);
+
+                employeePosition.Position = newEmployeePosition.Position;
                 db.SaveChanges();
             }
-            return "Данные обновлены";
+            return "Данные изменены";
         }
         #endregion
 
