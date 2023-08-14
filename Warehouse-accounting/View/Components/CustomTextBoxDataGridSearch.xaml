@@ -4,12 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Warehouse_accounting.View.Components"
-             mc:Ignorable="d" >
+             mc:Ignorable="d" 
+             x:Name="tbSearch_UserControl">
     <Border BorderThickness="1"
             CornerRadius="8,8,8,8" BorderBrush="#EFF1F4" Background="#FFFFFF" Width="1106" Height="62">
         <Grid>
             <Image Source="/Images/Search.png" Width="20" Height="20" HorizontalAlignment="Left" Margin="16 0 0 0"></Image>
-            <TextBox x:Name="txtInput" Width="1065" Height="35" Background="Transparent" BorderBrush="#EFF1F4" BorderThickness="0" TextAlignment="Left" VerticalContentAlignment="Center" Margin="36 0 0 0" FontSize="14" FontWeight="Bold" TextChanged="txtInput_TextChanged"></TextBox>
+            <TextBox x:Name="txtInput" Width="1065" Height="35" Background="Transparent" BorderBrush="#EFF1F4" BorderThickness="0" TextAlignment="Left" VerticalContentAlignment="Center" Margin="36 0 0 0" FontSize="14" FontWeight="Bold" TextChanged="txtInput_TextChanged" Text="{Binding ElementName=tbSearch_UserControl, Path=CustomSearchTextBoxText, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock x:Name="tbPlaceholder" FontSize="14" FontWeight="Regular" VerticalAlignment="Center" HorizontalAlignment="Left" Panel.ZIndex="-1" Margin="44 0 0 0"/>
         </Grid>
     </Border>

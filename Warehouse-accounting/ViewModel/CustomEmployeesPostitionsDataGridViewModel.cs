@@ -18,6 +18,7 @@ namespace Warehouse_accounting.ViewModel
     public class CustomEmployeesPostitionsDataGridViewModel : ViewModelBase, IDataGridViewModel
     {
         #region VARIABLES
+        private string SearchElement;
         private const int countTableRows = 7;
         private int countTableElements;
         public int CountTableElements
@@ -43,11 +44,20 @@ namespace Warehouse_accounting.ViewModel
         #endregion
 
         #region CONSTRUCTOR
-        public CustomEmployeesPostitionsDataGridViewModel(int _activePage)
+        public CustomEmployeesPostitionsDataGridViewModel(int _activePage, string searchElement)
         {
             DataGridViewModelStorage.Storage = this;
-            ActivePage = 1;
-            CountTableElements = EmployeeDataWorker.GetEmployeePositions().Count;
+            List<EmployeePosition> employeePositions = new List<EmployeePosition>();
+            SearchElement = searchElement;
+            if (SearchElement != "")
+            {
+                employeePositions = EmployeeDataWorker.GetEmployeePositionsContains(SearchElement);
+            }
+            else
+            {
+                employeePositions = EmployeeDataWorker.GetEmployeePositions();
+            }
+            CountTableElements = employeePositions.Count;
             if (_activePage == 0)
             {
                 ActivePage = (int)Math.Ceiling((double)CountTableElements / countTableRows);
@@ -102,7 +112,15 @@ namespace Warehouse_accounting.ViewModel
 
         private void DrawTable()
         {
-            List<EmployeePosition> employeePositions = EmployeeDataWorker.GetEmployeePositionsRange(ActivePage);
+            List<EmployeePosition> employeePositions = new List<EmployeePosition>();
+            if (SearchElement != "")
+            {
+                employeePositions = EmployeeDataWorker.GetEmployeePositionsRangeContains(ActivePage, SearchElement);
+            }
+            else
+            {
+                employeePositions = EmployeeDataWorker.GetEmployeePositionsRange(ActivePage);
+            }
             UserControl dataGrid = new CustomEmployeesPostitionsDataGrid(employeePositions, CountTableElements, ActivePage);
             EmployeesDataGridElementViewModelStorage.Storage.CurrentDataGrid = dataGrid;
         }

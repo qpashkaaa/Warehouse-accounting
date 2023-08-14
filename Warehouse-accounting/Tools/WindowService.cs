@@ -17,6 +17,7 @@ namespace Warehouse_accounting.Tools
     {
         private Window modalWindow;
         private Window mainWindow;
+        private Window modalWindowRequestResult;
         private void OpenModalWindowMethood(Window window)
         {
             var mainWindow = System.Windows.Application.Current.MainWindow;
@@ -91,14 +92,18 @@ namespace Warehouse_accounting.Tools
 
         public void OpenModalWindowRequestResult(string message)
         {
-            var window = new ModalWindowRequestResult(message, mainWindow);
-            window.WindowStartupLocation = WindowStartupLocation.Manual;
-            window.Top = mainWindow.Top + 224;
+            if (modalWindowRequestResult != null)
+            {
+                modalWindowRequestResult.Close();
+            }
+            modalWindowRequestResult = new ModalWindowRequestResult(message, mainWindow);
+            modalWindowRequestResult.WindowStartupLocation = WindowStartupLocation.Manual;
+            modalWindowRequestResult.Top = mainWindow.Top + 224;
 
-            double left = mainWindow.Left + mainWindow.ActualWidth - window.Width;
-            window.Left = left - 52;
-            window.Topmost = true;
-            window.Show();
+            double left = mainWindow.Left + mainWindow.ActualWidth - modalWindowRequestResult.Width;
+            modalWindowRequestResult.Left = left - 52;
+            modalWindowRequestResult.Topmost = true;
+            modalWindowRequestResult.Show();
         }
     }
 }

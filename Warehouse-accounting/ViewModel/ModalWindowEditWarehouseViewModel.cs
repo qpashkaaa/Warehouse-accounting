@@ -102,7 +102,7 @@ namespace Warehouse_accounting.ViewModel
                 string response = WarehouseDataWorker.EditWarehouse(newWarehouse);
 
                 // set data grid active on the last page
-                new CustomWarehousesDataGridViewModel(0);
+                new CustomWarehousesDataGridViewModel(0, "");
 
                 // close modal window
                 OnCloseModalWindow();

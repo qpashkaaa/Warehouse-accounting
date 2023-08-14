@@ -76,21 +76,21 @@ namespace Warehouse_accounting.ViewModel
             {
                 string response = EmployeeDataWorker.DeleteEmployee(IdElem);
                 EmployeesDataGridElementViewModelStorage.Storage.ShowEmployeeTable();
-                new CustomEmployeesDataGridViewModel(1);
+                new CustomEmployeesDataGridViewModel(1, "");
                 OnOpenRequestResultModalWindow(response);
             }
             if (OpenTable == TablesIdStorage.EMPLOYEES_POSITIONS_TABLE)
             {
                 string response = EmployeeDataWorker.DeletePosition(IdElem);
                 EmployeesDataGridElementViewModelStorage.Storage.ShowEmployeePositionsTable();
-                new CustomEmployeesPostitionsDataGridViewModel(1);
+                new CustomEmployeesPostitionsDataGridViewModel(1, "");
                 OnOpenRequestResultModalWindow(response);
             }
             if (OpenTable == TablesIdStorage.WAREHOUSES_TABLE)
             {
                 string response = WarehouseDataWorker.DeleteWarehouse(IdElem);
                 WarehousesDataGridElementViewModelStorage.Storage.ShowWarehouseTable();
-                new CustomWarehousesDataGridViewModel(1);
+                new CustomWarehousesDataGridViewModel(1, "");
                 OnOpenRequestResultModalWindow(response);
             }
         }

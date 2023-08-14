@@ -16,11 +16,21 @@ namespace Warehouse_accounting.Model
     public static class EmployeeDataWorker
     {
         #region GET_METHOODS
+        #region GET_EMPLOYEES_METHOODS
         public static List<Employee> GetEmployees()
         {
             using (AppDbContext db = new AppDbContext())
             {
                 var result = db.Employees.ToList();
+                return result;
+            }
+        }
+
+        public static List<Employee> GetEmployeesContains(string searchElement)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                var result = db.Employees.Where(d => d.Surname.ToUpper().Contains(searchElement.ToUpper())).ToList();
                 return result;
             }
         }
@@ -40,16 +50,35 @@ namespace Warehouse_accounting.Model
             {
                 int rangeStartValue = (activePage * 7) - 7;
                 var result = db.Employees.
-                    OrderBy(d=> d.EmployeeStatusId).
+                    OrderBy(d => d.EmployeeStatusId).
                     Skip(rangeStartValue).Take(7).
                     Include(d => d.EmployeePosition).
                     Include(d => d.WorkGroup).
-                    Include(d=> d.EmployeeStatus).
+                    Include(d => d.EmployeeStatus).
                     ToList();
                 return result;
             }
         }
 
+        public static List<Employee> GetEmployeesRangeContains(int activePage, string searchElement)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                int rangeStartValue = (activePage * 7) - 7;
+                var result = db.Employees.
+                    Where(d => d.Surname.ToUpper().Contains(searchElement.ToUpper())).
+                    OrderBy(d => d.EmployeeStatusId).
+                    Skip(rangeStartValue).Take(7).
+                    Include(d => d.EmployeePosition).
+                    Include(d => d.WorkGroup).
+                    Include(d => d.EmployeeStatus).
+                    ToList();
+                return result;
+            }
+        }
+        #endregion
+
+        #region GET_WORKG_GROUPS_METHOODS
         public static List<WorkGroup> GetEmployeeWorkGroups()
         {
             using (AppDbContext db = new AppDbContext())
@@ -85,7 +114,9 @@ namespace Warehouse_accounting.Model
                 return result;
             }
         }
+        #endregion
 
+        #region GET_STATUSES_METHOODS
         public static List<EmployeeStatus> GetEmployeeStatuses()
         {
             using (AppDbContext db = new AppDbContext())
@@ -94,11 +125,23 @@ namespace Warehouse_accounting.Model
                 return result;
             }
         }
+        #endregion
+
+        #region GET_POSITIONS_METHOODS
         public static List<EmployeePosition> GetEmployeePositions()
         {
             using (AppDbContext db = new AppDbContext())
             {
                 var result = db.EmployeePositions.ToList();
+                return result;
+            }
+        }
+
+        public static List<EmployeePosition> GetEmployeePositionsContains(string searchElement)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                var result = db.EmployeePositions.Where(d => d.Position.ToUpper().Contains(searchElement.ToUpper())).ToList();
                 return result;
             }
         }
@@ -116,7 +159,7 @@ namespace Warehouse_accounting.Model
         {
             using (AppDbContext db = new AppDbContext())
             {
-                var result = db.EmployeePositions.FirstOrDefault(d=> d.Id == positionId).Position.ToString();
+                var result = db.EmployeePositions.FirstOrDefault(d => d.Id == positionId).Position.ToString();
                 return result;
             }
         }
@@ -150,6 +193,19 @@ namespace Warehouse_accounting.Model
                 return result;
             }
         }
+        public static List<EmployeePosition> GetEmployeePositionsRangeContains(int activePage, string searchElement)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                int rangeStartValue = (activePage * 7) - 7;
+                var result = db.EmployeePositions.
+                    Where(d => d.Position.ToUpper().Contains(searchElement.ToUpper())).
+                    Skip(rangeStartValue).Take(7).
+                    ToList();
+                return result;
+            }
+        }
+        #endregion
         #endregion
 
         #region ADD_METHOODS

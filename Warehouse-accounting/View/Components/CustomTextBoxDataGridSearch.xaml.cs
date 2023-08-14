@@ -25,6 +25,20 @@ namespace Warehouse_accounting.View.Components
             InitializeComponent();
         }
 
+        public static DependencyProperty CustomSearchTextBoxTextProperty = DependencyProperty.Register(
+            "CustomSearchTextBoxText",
+            typeof(string),
+            typeof(CustomTextBoxDataGridSearch),
+            new FrameworkPropertyMetadata(
+            null, // default value
+            FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public string CustomSearchTextBoxText
+        {
+            get { return (string)GetValue(CustomSearchTextBoxTextProperty); }
+            set { SetValue(CustomSearchTextBoxTextProperty, value); }
+        }
+
         private string placeholder;
 
         public string Placeholder

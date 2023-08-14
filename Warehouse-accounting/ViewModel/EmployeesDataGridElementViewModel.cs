@@ -20,6 +20,16 @@ namespace Warehouse_accounting.ViewModel
     public class EmployeesDataGridElementViewModel : ViewModelBase
     {
         #region VARIABLES
+        private string searchElement;
+        public string SearchElement
+        {
+            get { return searchElement; }
+            set
+            {
+                searchElement = value;
+                RaisePropertyChanged("SearchElement");
+            }
+        }
         private int countTableElements;
         public int CountTableElements
         {
@@ -71,6 +81,7 @@ namespace Warehouse_accounting.ViewModel
         {
             _windowService = windowService;
             EmployeesDataGridElementViewModelStorage.Storage = this;
+            SearchElement = "";
             ShowEmployeeTable();
         }
         #endregion
@@ -99,21 +110,48 @@ namespace Warehouse_accounting.ViewModel
                 return new RelayCommand(() => OpenAddModalWindow());
             }
         }
+
+        public ICommand tbSearch_KeyUp
+        {
+            get
+            {
+                return new RelayCommand(() => SearchElements());
+            }
+        }
         #endregion
 
         #region EMPLOYEES_TABLES_METHOODS
         public void ShowEmployeeTable()
         {
             TableName = "Сотрудники";
+            SearchElement = "";
             CountTableElements = EmployeeDataWorker.GetEmployees().Count;
-            new CustomEmployeesDataGridViewModel(1);
+            new CustomEmployeesDataGridViewModel(1, SearchElement);
         }
 
         public void ShowEmployeePositionsTable()
         {
             TableName = "Должности";
+            SearchElement = "";
             CountTableElements = EmployeeDataWorker.GetEmployeePositions().Count;
-            new CustomEmployeesPostitionsDataGridViewModel(1);
+            new CustomEmployeesPostitionsDataGridViewModel(1, SearchElement);
+        }
+
+        private void SearchElements()
+        {
+            if (SearchElement.Length % 3 == 0)
+            {
+                if (TableName == "Сотрудники")
+                {
+                    CountTableElements = EmployeeDataWorker.GetEmployeesContains(SearchElement).Count;
+                    new CustomEmployeesDataGridViewModel(1, SearchElement);
+                }
+                if (TableName == "Должности")
+                {
+                    CountTableElements = EmployeeDataWorker.GetEmployeePositionsContains(SearchElement).Count;
+                    new CustomEmployeesPostitionsDataGridViewModel(1, SearchElement);
+                }
+            }
         }
 
         private void OpenAddModalWindow()

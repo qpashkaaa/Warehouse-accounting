@@ -24,6 +24,15 @@ namespace Warehouse_accounting.Model
             }
         }
 
+        public static List<Warehouse> GetWarehousesContains(string searchElement)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                var result = db.Warehouses.Where(d => d.Name.ToUpper().Contains(searchElement.ToUpper())).ToList();
+                return result;
+            }
+        }
+
         public static Warehouse GetWarehouseById(int id)
         {
             using (AppDbContext db = new AppDbContext())
@@ -39,6 +48,22 @@ namespace Warehouse_accounting.Model
             {
                 int rangeStartValue = (activePage * 7) - 7;
                 var result = db.Warehouses.
+                    OrderBy(d => d.WarehouseStatus).
+                    Skip(rangeStartValue).Take(7).
+                    Include(d => d.WarehouseAddress).
+                    Include(d => d.WarehouseStatus).
+                    ToList();
+                return result;
+            }
+        }
+
+        public static List<Warehouse> GetWarehousesRangeContains(int activePage, string searchElement)
+        {
+            using (AppDbContext db = new AppDbContext())
+            {
+                int rangeStartValue = (activePage * 7) - 7;
+                var result = db.Warehouses.
+                    Where(d => d.Name.ToUpper().Contains(searchElement.ToUpper())).
                     OrderBy(d => d.WarehouseStatus).
                     Skip(rangeStartValue).Take(7).
                     Include(d => d.WarehouseAddress).

@@ -117,7 +117,7 @@ namespace Warehouse_accounting.ViewModel
                 string response = EmployeeDataWorker.EditEmployee(newEmployee);
 
                 // set data grid active on the last page
-                new CustomEmployeesDataGridViewModel(0);
+                new CustomEmployeesDataGridViewModel(0, "");
 
                 // close modal window
                 OnCloseModalWindow();

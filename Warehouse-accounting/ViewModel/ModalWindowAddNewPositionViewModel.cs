@@ -83,7 +83,7 @@ namespace Warehouse_accounting.ViewModel
                 EmployeesDataGridElementViewModelStorage.Storage.ShowEmployeePositionsTable();
 
                 // set data grid active last page 
-                new CustomEmployeesPostitionsDataGridViewModel(0);
+                new CustomEmployeesPostitionsDataGridViewModel(0, "");
 
                 // close modal window
                 OnCloseModalWindow();

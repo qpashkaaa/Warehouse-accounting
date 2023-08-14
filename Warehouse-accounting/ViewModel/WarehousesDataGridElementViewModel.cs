@@ -17,6 +17,16 @@ namespace Warehouse_accounting.ViewModel
     public class WarehousesDataGridElementViewModel : ViewModelBase
     {
         #region VARIABLES
+        private string searchElement;
+        public string SearchElement
+        {
+            get { return searchElement; }
+            set
+            {
+                searchElement = value;
+                RaisePropertyChanged("SearchElement");
+            }
+        }
         private int countTableElements;
         public int CountTableElements
         {
@@ -73,6 +83,7 @@ namespace Warehouse_accounting.ViewModel
         public WarehousesDataGridElementViewModel(IWindowService windowService)
         {
             _windowService = windowService;
+            SearchElement = "";
             WarehousesDataGridElementViewModelStorage.Storage = this;
             ShowWarehouseTable();
         }
@@ -86,14 +97,34 @@ namespace Warehouse_accounting.ViewModel
                 return new RelayCommand(() => OpenAddModalWindow());
             }
         }
+        public ICommand tbSearch_KeyUp
+        {
+            get
+            {
+                return new RelayCommand(() => SearchElements());
+            }
+        }
         #endregion
 
         #region WAREHOUSES_TABLES_METHOODS
         public void ShowWarehouseTable()
         {
             TableName = "Склады";
+            SearchElement = "";
             CountTableElements = WarehouseDataWorker.GetWarehouses().Count;
-            new CustomWarehousesDataGridViewModel(1);
+            new CustomWarehousesDataGridViewModel(1, "");
+        }
+
+        private void SearchElements()
+        {
+            if (SearchElement.Length % 3 == 0)
+            {
+                if (TableName == "Склады")
+                {
+                    CountTableElements = WarehouseDataWorker.GetWarehousesContains(SearchElement).Count;
+                    new CustomWarehousesDataGridViewModel(1, SearchElement);
+                }
+            }
         }
 
         private void OpenAddModalWindow()

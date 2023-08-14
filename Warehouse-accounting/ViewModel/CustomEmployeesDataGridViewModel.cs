@@ -18,6 +18,7 @@ namespace Warehouse_accounting.ViewModel
     public class CustomEmployeesDataGridViewModel : ViewModelBase, IDataGridViewModel
     {
         #region VARIABLES
+        private string SearchElement;
         private const int countTableRows = 7;
         private int countTableElements;
         public int CountTableElements
@@ -43,10 +44,19 @@ namespace Warehouse_accounting.ViewModel
         #endregion
 
         #region CONSTRUCTOR
-        public CustomEmployeesDataGridViewModel(int _activePage)
+        public CustomEmployeesDataGridViewModel(int _activePage, string searchElement)
         {
             DataGridViewModelStorage.Storage = this;
-            List<Employee> employees = EmployeeDataWorker.GetEmployees();
+            List<Employee> employees = new List<Employee>();
+            SearchElement = searchElement;
+            if (SearchElement != "") 
+            {
+                employees = EmployeeDataWorker.GetEmployeesContains(SearchElement);
+            }
+            else
+            {
+                employees = EmployeeDataWorker.GetEmployees();
+            }
             CountTableElements = employees.Count;
             if (_activePage == 0)
             {
@@ -102,7 +112,15 @@ namespace Warehouse_accounting.ViewModel
 
         public void DrawTable()
         {
-            List<Employee> employees = EmployeeDataWorker.GetEmployeesRange(ActivePage);
+            List<Employee> employees = new List<Employee>();
+            if (SearchElement != "")
+            {
+                employees = EmployeeDataWorker.GetEmployeesRangeContains(ActivePage,SearchElement);
+            }
+            else
+            {
+                employees = EmployeeDataWorker.GetEmployeesRange(ActivePage);
+            }
             UserControl dataGrid = new CustomEmployeesDataGrid(employees, CountTableElements, ActivePage);
             EmployeesDataGridElementViewModelStorage.Storage.CurrentDataGrid = dataGrid;
         }

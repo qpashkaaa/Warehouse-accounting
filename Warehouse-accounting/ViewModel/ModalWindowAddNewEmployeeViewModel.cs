@@ -125,7 +125,7 @@ namespace Warehouse_accounting.ViewModel
                 EmployeesDataGridElementViewModelStorage.Storage.ShowEmployeeTable();
 
                 // set data grid active last page 
-                new CustomEmployeesDataGridViewModel(0);
+                new CustomEmployeesDataGridViewModel(0, "");
 
                 // close modal window
                 OnCloseModalWindow();

@@ -17,6 +17,7 @@ namespace Warehouse_accounting.ViewModel
     public class CustomWarehousesDataGridViewModel : ViewModelBase, IDataGridViewModel
     {
         #region VARIABLES
+        private string SearchElement;
         private const int countTableRows = 7;
         private int countTableElements;
         public int CountTableElements
@@ -42,11 +43,20 @@ namespace Warehouse_accounting.ViewModel
         #endregion
 
         #region CONSTRUCTOR
-        public CustomWarehousesDataGridViewModel(int _activePage)
+        public CustomWarehousesDataGridViewModel(int _activePage, string searchElement)
         {
             DataGridViewModelStorage.Storage = this;
-            ActivePage = 1;
-            CountTableElements = WarehouseDataWorker.GetWarehouses().Count;
+            List<Warehouse> warehouses = new List<Warehouse>();
+            SearchElement = searchElement;
+            if (SearchElement != "")
+            {
+                warehouses = WarehouseDataWorker.GetWarehousesContains(SearchElement);
+            }
+            else
+            {
+                warehouses = WarehouseDataWorker.GetWarehouses();
+            }
+            CountTableElements = warehouses.Count;
             if (_activePage == 0)
             {
                 ActivePage = (int)Math.Ceiling((double)CountTableElements / countTableRows);
@@ -101,7 +111,15 @@ namespace Warehouse_accounting.ViewModel
 
         private void DrawTable()
         {
-            List<Warehouse> warehouses = WarehouseDataWorker.GetWarehousesRange(ActivePage);
+            List<Warehouse> warehouses = new List<Warehouse>();
+            if (SearchElement != "")
+            {
+                warehouses = WarehouseDataWorker.GetWarehousesRangeContains(ActivePage, SearchElement);
+            }
+            else
+            {
+                warehouses = WarehouseDataWorker.GetWarehousesRange(ActivePage);
+            }
             UserControl dataGrid = new CustomWarehousesDataGrid(warehouses, CountTableElements, ActivePage);
             WarehousesDataGridElementViewModelStorage.Storage.CurrentDataGrid = dataGrid;
         }

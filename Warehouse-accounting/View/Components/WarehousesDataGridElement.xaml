@@ -27,7 +27,13 @@
                 </i:Interaction.Triggers>
             </local:CustomButtonAdd>
             <local:CustomDataGridTabControl Grid.Row="1" Grid.ColumnSpan="2" T_1="Все склады" ActiveTab="1"></local:CustomDataGridTabControl>
-            <local:CustomTextBoxDataGridSearch Grid.Row="2" Grid.ColumnSpan="2" Placeholder="Поиск склада по адресу"></local:CustomTextBoxDataGridSearch>
+            <local:CustomTextBoxDataGridSearch Grid.Row="2" Grid.ColumnSpan="2" Placeholder="Поиск склада по наименованию" CustomSearchTextBoxText="{Binding SearchElement,UpdateSourceTrigger=PropertyChanged}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="KeyUp">
+                        <i:InvokeCommandAction Command="{Binding DataContext.tbSearch_KeyUp, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </local:CustomTextBoxDataGridSearch>
             <Frame 
             Grid.Row="3" Grid.ColumnSpan="2" Margin="0 11 0 0"
             Background="#FFFFFF"

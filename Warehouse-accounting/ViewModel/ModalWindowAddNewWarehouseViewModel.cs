@@ -116,7 +116,7 @@ namespace Warehouse_accounting.ViewModel
                 WarehousesDataGridElementViewModelStorage.Storage.ShowWarehouseTable();
 
                 // set data grid active last page 
-                new CustomWarehousesDataGridViewModel(0);
+                new CustomWarehousesDataGridViewModel(0, "");
 
                 // close modal window
                 OnCloseModalWindow();
