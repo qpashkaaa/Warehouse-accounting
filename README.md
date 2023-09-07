@@ -4,6 +4,7 @@
 
 ## Preview
 ### Screenshots
+_____
 ![Preview1](https://github.com/qpashkaaa/Warehouse-accounting/assets/95401099/50945271-7662-4367-a156-6b9158d5d247)
 _____
 ![Preview2](https://github.com/qpashkaaa/Warehouse-accounting/assets/95401099/0f27ce6f-aa0c-42ed-8e04-2df2dbef5764)
