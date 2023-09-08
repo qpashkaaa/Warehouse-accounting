@@ -52,7 +52,7 @@ public static String AES_encrypt(String input)
         }
 ```
 - **A component-oriented architecture built on the interaction of multiple User Сontrols that perform their functions.**
-```C#
+```XAML
 <UserControl x:Class="Warehouse_accounting.View.Components.CustomDataGridInfoBox"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
