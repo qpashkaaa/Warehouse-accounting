@@ -5,17 +5,17 @@
 ## Preview
 ### Screenshots
 _____
-![Preview1](https://github.com/qpashkaaa/Warehouse-accounting/assets/95401099/50945271-7662-4367-a156-6b9158d5d247)
+![Screenshot_1](https://github.com/qpashkaaa/Warehouse-accounting/assets/95401099/b95121f7-486d-467b-83df-37c7caeb0292)
 _____
-![Preview2](https://github.com/qpashkaaa/Warehouse-accounting/assets/95401099/0f27ce6f-aa0c-42ed-8e04-2df2dbef5764)
+![Screenshot_2](https://github.com/qpashkaaa/Warehouse-accounting/assets/95401099/0e1df69d-59bb-4091-a4ae-d0139746f550)
 _____
-![Preview3](https://github.com/qpashkaaa/Warehouse-accounting/assets/95401099/877398bb-2a87-49ed-b9e0-6cdc305ab432)
+![Screenshot_3](https://github.com/qpashkaaa/Warehouse-accounting/assets/95401099/f8194edd-2a9a-401c-a710-031cf9ceb7ae)
 _____
-![Preview4](https://github.com/qpashkaaa/Warehouse-accounting/assets/95401099/843703ff-2553-4b5d-8b49-660212264294)
+![Screenshot_4](https://github.com/qpashkaaa/Warehouse-accounting/assets/95401099/524bc834-b09b-45a8-8d2d-959c3fbaea9f)
 _____
 
 ### Demo Video
-https://github.com/qpashkaaa/Warehouse-accounting/assets/95401099/901161d0-93a4-4cfb-b18e-02c3c4da8776
+https://github.com/qpashkaaa/Warehouse-accounting/assets/95401099/1bd2b2af-5e4f-430c-a5ba-b1fe3f6142b2
 _____
 
 
